@@ -1,4 +1,5 @@
-﻿using Project_D.Models;
+﻿using Project_D.Datas;
+using Project_D.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -12,21 +13,29 @@ namespace Project_D.ViewModels
     {
         public SettingRuleViewModel()
         {
-            SettingRuleModel settingRuleModel = new SettingRuleModel();
-            foreach (var rule in settingRuleModel.GetRules())
+            _settingRule = new SettingRuleModel();
+
+            _settingRule.GetRules().ForEach(o =>
             {
-                _rules.Add(new RuleViewModel(rule));
-            }
+                RuleViewModel rule = new RuleViewModel(o);
+                Rules.Add(rule);
+            });
         }
 
-        private ObservableCollection<RuleViewModel> _rules = new ObservableCollection<RuleViewModel>();
-        public ObservableCollection<RuleViewModel> Rules { get => _rules; }
+        private SettingRuleModel _settingRule;
 
-        private int _selectedIndex = -1;
+
+        public ObservableCollection<RuleViewModel> Rules { get; } = new ObservableCollection<RuleViewModel>();
+
+        public RuleViewModel SelectedRule
+        {
+            get { return (_selectedIndex >= 0) ? Rules[_selectedIndex] : null; }
+        }
+
+        private int _selectedIndex = 0;
         public int SelectedIndex
         {
             get => _selectedIndex;
-            //set => SetProperty(ref _selectedIndex, value);
             set
             {
                 if (SetProperty(ref _selectedIndex, value))
@@ -36,12 +45,27 @@ namespace Project_D.ViewModels
             }
         }
 
-        private RuleViewModel _selectedRule = null;
-        public RuleViewModel SelectedRule
+        public void AddRule()
         {
-            //get => _selectedIndex > -1 ? _rules[_selectedIndex] : null;
-            get => _selectedRule;
-            set => SetProperty(_selectedRule, value, () => _selectedRule = value);
+            RuleViewModel rule = new RuleViewModel
+            {
+                IsEdit = true
+            };
+            _settingRule.AddRule(rule);
+            Rules.Add(rule);
+            SelectedIndex = Rules.IndexOf(rule);
+        }
+
+        public void RemoveRule()
+        {
+            _settingRule.RemoveRule(SelectedRule);
+            Rules.Remove(SelectedRule);
+        }
+
+        public void ConfirmEdit(string Text)
+        {
+            SelectedRule.IsEdit = true;
+            RaisePropertyChanged(nameof(SelectedRule));
         }
     }
 }

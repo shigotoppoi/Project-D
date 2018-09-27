@@ -12,13 +12,31 @@ namespace Project_D.Models
         public SettingRuleModel()
         {
             _dataService = new DataService();
+            _rules = _dataService.GetRules().ToList();
         }
 
         DataService _dataService;
+        List<Rule> _rules;
 
-        public IEnumerable<Rule> GetRules()
+        public List<Rule> GetRules()
         {
-            return _dataService.GetRules();
+            return _rules;
+        }
+
+        public void AddRule(Rule rule)
+        {
+            if(!_rules.Contains(rule))
+            {
+                _rules.Add(rule);
+            }
+        }
+
+        public void RemoveRule(Rule rule)
+        {
+            if (!_rules.Contains(rule))
+            {
+                _rules.Remove(rule);
+            }
         }
     }
 }

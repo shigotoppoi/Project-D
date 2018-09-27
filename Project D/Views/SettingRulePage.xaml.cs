@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Project_D.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -12,7 +13,6 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using Project_D.ViewModels;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -33,7 +33,12 @@ namespace Project_D.Views
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            SettingRule.SelectedIndex = 2;
+
+        }
+
+        private void Rules_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            MyUserControl.Rule = SettingRule.SelectedRule;
         }
     }
 }

@@ -6,6 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewModels="using:Project_D.ViewModels"
+    xmlns:userControls="using:Project_D.UserControls"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
@@ -18,6 +19,8 @@
 
         <RelativePanel Grid.Row="0">
             <AutoSuggestBox RelativePanel.AlignLeftWithPanel="True"></AutoSuggestBox>
+            <Button RelativePanel.LeftOf="RemoveRule" Click="{x:Bind SettingRule.AddRule}" Content="Add"></Button>
+            <Button x:Name="RemoveRule" RelativePanel.AlignRightWithPanel="True" Click="{x:Bind SettingRule.RemoveRule}" Content="Remove"></Button>
         </RelativePanel>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
@@ -25,7 +28,9 @@
                 <ColumnDefinition Width="3*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
-            <ListView Grid.Column="0" ItemsSource="{x:Bind SettingRule.Rules}" SelectedItem="{x:Bind SettingRule.SelectedRule, Mode=TwoWay}">
+            <ListView Name="Rules" Grid.Column="0" ItemsSource="{x:Bind SettingRule.Rules}" 
+                      SelectedIndex="{x:Bind SettingRule.SelectedIndex, Mode=TwoWay}"
+                      SelectionChanged="Rules_SelectionChanged">
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="viewModels:RuleViewModel">
                         <TextBlock Text="{x:Bind Name}"></TextBlock>
@@ -33,30 +38,7 @@
                 </ListView.ItemTemplate>
             </ListView>
 
-            <Grid Grid.Column="1">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                </Grid.RowDefinitions>
-
-                <TextBlock Grid.Column="0" Grid.Row="0"></TextBlock>
-                <TextBox Grid.Column="1" Grid.Row="0" Text="{x:Bind SettingRule.SelectedRule.Name, Mode=TwoWay}"></TextBox>
-                <TextBlock Grid.Column="0" Grid.Row="1"></TextBlock>
-                <TextBox Grid.Column="1" Grid.Row="1" Text="{x:Bind SettingRule.SelectedRule.Destination, Mode=TwoWay}"></TextBox>
-                <TextBlock Grid.Column="0" Grid.Row="2"></TextBlock>
-                <TextBox Grid.Column="1" Grid.Row="2" Text="{x:Bind SettingRule.SelectedRule.Format, Mode=TwoWay}"></TextBox>
-                <TextBlock Grid.Column="0" Grid.Row="3"></TextBlock>
-                <TextBox Grid.Column="1" Grid.Row="3" Text="{x:Bind SettingRule.SelectedRule.CreateIfNew, Mode=TwoWay}"></TextBox>
-                <TextBlock Grid.Column="0" Grid.Row="4"></TextBlock>
-                <TextBox Grid.Column="1" Grid.Row="4" Text="{x:Bind SettingRule.SelectedRule.Extensions, Mode=TwoWay}"></TextBox>
-            </Grid>
+            <userControls:SettingRuleUserControl Grid.Column="1" x:Name="MyUserControl"></userControls:SettingRuleUserControl>
         </Grid>
         <RelativePanel Grid.Row="2">
             <Button Click="Button_Click"></Button>

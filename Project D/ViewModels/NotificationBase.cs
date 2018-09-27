@@ -18,6 +18,7 @@ namespace Project_D.ViewModels
             if (EqualityComparer<T>.Default.Equals(field, value)) return false;
             field = value;
             RaisePropertyChanged(property);
+            this.ToString();
             return true;
         }
 

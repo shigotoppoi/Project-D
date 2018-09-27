@@ -11,7 +11,9 @@ namespace Project_D.ViewModels
 {
     public class RuleViewModel : NotificationBase<Rule>
     {
-        public RuleViewModel(Rule rule) : base(rule) { }
+        public RuleViewModel(Rule rule = null) : base(rule) { }       
+
+        public bool IsEdit { get; set; }
 
         public string Name
         {
@@ -22,18 +24,21 @@ namespace Project_D.ViewModels
         public string Destination
         {
             get => This.Destination;
-            set => SetProperty(This.Destination, value, () => This.Destination = value);
+            //set => _Set(This.Destination, value, nameof(Destination));
+            set=>SetProperty(This.Destination, value, () => This.Destination = value);
         }
 
         public bool CreateIfNew
         {
             get => This.CreateIfNew;
+            //set => _Set(This.CreateIfNew, value, nameof(CreateIfNew));
             set => SetProperty(This.CreateIfNew, value, () => This.CreateIfNew = value);
         }
 
         public string Extensions
         {
             get => This.Extensions;
+            //set => _Set(This.Extensions, value, nameof(Extensions));
             set => SetProperty(This.Extensions, value, () => This.Extensions = value);
         }
 
@@ -42,5 +47,6 @@ namespace Project_D.ViewModels
             get => This.Format;
             set => SetProperty(This.Format, value, () => This.Format = value);
         }
+
     }
 }
