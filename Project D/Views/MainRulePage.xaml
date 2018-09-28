@@ -1,5 +1,5 @@
 ﻿<Page
-    x:Class="Project_D.Views.SettingRulePage"
+    x:Class="Project_D.Views.MainRulePage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Project_D.Views"
@@ -19,8 +19,15 @@
 
         <RelativePanel Grid.Row="0">
             <AutoSuggestBox RelativePanel.AlignLeftWithPanel="True"></AutoSuggestBox>
-            <Button RelativePanel.LeftOf="RemoveRule" Click="{x:Bind SettingRule.AddRule}" Content="Add"></Button>
-            <Button x:Name="RemoveRule" RelativePanel.AlignRightWithPanel="True" Click="{x:Bind SettingRule.RemoveRule}" Content="Remove"></Button>
+            <Button Name="EditRuleButton" RelativePanel.LeftOf="AddRuleButton" 
+                    Click="EditRuleButton_Click" 
+                    Content="Edit"></Button>
+            <Button Name="AddRuleButton" RelativePanel.LeftOf="RemoveRuleButton" 
+                    Click="AddRuleButton_Click" 
+                    Content="Add"></Button>
+            <Button Name="RemoveRuleButton" RelativePanel.AlignRightWithPanel="True" 
+                    Click="{x:Bind MainRule.RemoveRule}" 
+                    Content="Remove"></Button>
         </RelativePanel>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
@@ -28,9 +35,10 @@
                 <ColumnDefinition Width="3*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
-            <ListView Name="Rules" Grid.Column="0" ItemsSource="{x:Bind SettingRule.Rules}" 
-                      SelectedIndex="{x:Bind SettingRule.SelectedIndex, Mode=TwoWay}"
-                      SelectionChanged="Rules_SelectionChanged">
+            <ListView Name="Rules" Grid.Column="0" ItemsSource="{x:Bind MainRule.Rules}" 
+                      SelectedIndex="{x:Bind MainRule.SelectedIndex, Mode=TwoWay}"
+                      SelectionChanged="Rules_SelectionChanged"
+                      ItemClick="Rules_ItemClick">
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="viewModels:RuleViewModel">
                         <TextBlock Text="{x:Bind Name}"></TextBlock>
@@ -38,10 +46,10 @@
                 </ListView.ItemTemplate>
             </ListView>
 
-            <userControls:SettingRuleUserControl Grid.Column="1" x:Name="MyUserControl"></userControls:SettingRuleUserControl>
+            <Frame Grid.Column="1" Name="RuleDetailFrame"></Frame>
         </Grid>
         <RelativePanel Grid.Row="2">
-            <Button Click="Button_Click"></Button>
+            <Button ></Button>
         </RelativePanel>
     </Grid>
 </Page>

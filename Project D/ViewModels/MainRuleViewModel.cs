@@ -9,20 +9,20 @@ using System.Threading.Tasks;
 
 namespace Project_D.ViewModels
 {
-    public class SettingRuleViewModel : NotificationBase
+    public class MainRuleViewModel : NotificationBase
     {
-        public SettingRuleViewModel()
+        public MainRuleViewModel()
         {
-            _settingRule = new SettingRuleModel();
+            _mainRule = new MainRuleModel();
 
-            _settingRule.GetRules().ForEach(o =>
+            _mainRule.GetRules().ForEach(o =>
             {
                 RuleViewModel rule = new RuleViewModel(o);
                 Rules.Add(rule);
             });
         }
 
-        private SettingRuleModel _settingRule;
+        private MainRuleModel _mainRule;
 
 
         public ObservableCollection<RuleViewModel> Rules { get; } = new ObservableCollection<RuleViewModel>();
@@ -45,26 +45,27 @@ namespace Project_D.ViewModels
             }
         }
 
-        public void AddRule()
+        public void AddRule(RuleViewModel rule)
         {
-            RuleViewModel rule = new RuleViewModel
-            {
-                IsEdit = true
-            };
-            _settingRule.AddRule(rule);
+            _mainRule.AddRule(rule);
             Rules.Add(rule);
             SelectedIndex = Rules.IndexOf(rule);
         }
 
         public void RemoveRule()
         {
-            _settingRule.RemoveRule(SelectedRule);
-            Rules.Remove(SelectedRule);
+            if (SelectedRule != null)
+            {
+                var i = Rules.IndexOf(SelectedRule);
+                _mainRule.RemoveRule(SelectedRule);
+                Rules.Remove(SelectedRule);
+                SelectedIndex = i.Equals(0) ? ++i : --i;
+            }
         }
 
         public void ConfirmEdit(string Text)
         {
-            SelectedRule.IsEdit = true;
+            SelectedRule.IsEditable = true;
             RaisePropertyChanged(nameof(SelectedRule));
         }
     }

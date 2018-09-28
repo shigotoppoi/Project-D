@@ -11,9 +11,9 @@ namespace Project_D.ViewModels
 {
     public class RuleViewModel : NotificationBase<Rule>
     {
-        public RuleViewModel(Rule rule = null) : base(rule) { }       
+        public RuleViewModel(Rule rule = null) : base(rule) { }
 
-        public bool IsEdit { get; set; }
+        public bool IsEditable { get; set; } = false;
 
         public string Name
         {
