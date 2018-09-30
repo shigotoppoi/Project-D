@@ -121,23 +121,30 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Datas\DataService.cs" />
+    <Compile Include="Datas\File.cs" />
     <Compile Include="Datas\Rule.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Models\MainRuleModel.cs" />
+    <Compile Include="Models\FileModel.cs" />
+    <Compile Include="Models\RuleMasterModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\FileMainViewModel.cs" />
+    <Compile Include="ViewModels\FileViewModel.cs" />
     <Compile Include="ViewModels\NotificationBase.cs" />
     <Compile Include="ViewModels\RuleViewModel.cs" />
-    <Compile Include="ViewModels\MainRuleViewModel.cs" />
+    <Compile Include="ViewModels\RuleMasterViewModel.cs" />
     <Compile Include="Views\DisplayRuleDetailPage.xaml.cs">
       <DependentUpon>DisplayRuleDetailPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\EditRuleDetailPage.xaml.cs">
       <DependentUpon>EditRuleDetailPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\MainRulePage.xaml.cs">
-      <DependentUpon>MainRulePage.xaml</DependentUpon>
+    <Compile Include="Views\FileMainPage.xaml.cs">
+      <DependentUpon>FileMainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RuleMasterPage.xaml.cs">
+      <DependentUpon>RuleMasterPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -173,7 +180,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\MainRulePage.xaml">
+    <Page Include="Views\FileMainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RuleMasterPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

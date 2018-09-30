@@ -15,8 +15,8 @@
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition></RowDefinition>
@@ -26,19 +26,19 @@
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
 
-            <TextBlock Grid.Column="0" Grid.Row="0" Text="Name"></TextBlock>
+            <TextBlock Grid.Column="0" Grid.Row="0" Text="Name" Style="{StaticResource itemStyle}"></TextBlock>
             <TextBlock Grid.Column="1" Grid.Row="0" Name="RuleNameTextBox"
                             Text="{x:Bind Rule.Name, Mode=OneWay}"></TextBlock>
-            <TextBlock Grid.Column="0" Grid.Row="1" Text="Destination"></TextBlock>
+            <TextBlock Grid.Column="0" Grid.Row="1" Text="Destination" Style="{StaticResource itemStyle}"></TextBlock>
             <TextBlock Grid.Column="1" Grid.Row="1" Name="DestinationTextBox"
                             Text="{x:Bind Rule.Destination, Mode=OneWay}"></TextBlock>
-            <TextBlock Grid.Column="0" Grid.Row="2" Text="Format"></TextBlock>
+            <TextBlock Grid.Column="0" Grid.Row="2" Text="Format" Style="{StaticResource itemStyle}"></TextBlock>
             <TextBlock Grid.Column="1" Grid.Row="2" Name="FormatTextBox"
                             Text="{x:Bind Rule.Format, Mode=OneWay}"></TextBlock>
-            <TextBlock Grid.Column="0" Grid.Row="3" Text="CreateIfNew"></TextBlock>
+            <TextBlock Grid.Column="0" Grid.Row="3" Text="CreateIfNew" Style="{StaticResource itemStyle}"></TextBlock>
             <TextBlock Grid.Column="1" Grid.Row="3" Name="CreateIfNewCheckBox" 
                             Text="{x:Bind Rule.CreateIfNew, Mode=OneWay}"></TextBlock>
-            <TextBlock Grid.Column="0" Grid.Row="4" Text="Extensions"></TextBlock>
+            <TextBlock Grid.Column="0" Grid.Row="4" Text="Extensions" Style="{StaticResource itemStyle}"></TextBlock>
             <TextBlock Grid.Column="1" Grid.Row="4" Name="ExtensionsTextBox"
                             Text="{x:Bind Rule.Extensions, Mode=OneWay}"></TextBlock>
         </Grid>

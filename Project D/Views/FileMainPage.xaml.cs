@@ -12,25 +12,29 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using Project_D.Views;
+using Project_D.ViewModels;
 
-// The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
+// The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
-namespace Project_D
+namespace Project_D.Views
 {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class MainPage : Page
+    public sealed partial class FileMainPage : Page
     {
-        public MainPage()
+        public FileMainPage()
         {
             this.InitializeComponent();
+
+            FileMain = new FileMainViewModel();
         }
 
-        public void Page_Loaded(object sender, RoutedEventArgs e)
+        FileMainViewModel FileMain { get; set; }
+
+        private void FileMainGrid_Drop(object sender, DragEventArgs e)
         {
-            Frame.Navigate(typeof(RuleMasterPage));
+            e.DataView.gets
         }
     }
 }

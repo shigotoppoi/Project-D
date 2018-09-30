@@ -4,4 +4,12 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Project_D">
 
+    <Application.Resources>
+        <Style x:Key="itemStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="18"></Setter>
+            <Setter Property="VerticalAlignment" Value="Center"></Setter>
+            <Setter Property="Margin" Value="10"></Setter>
+        </Style>
+        <Thickness x:Key="InnerMarginStyle">10</Thickness>
+    </Application.Resources>
 </Application>

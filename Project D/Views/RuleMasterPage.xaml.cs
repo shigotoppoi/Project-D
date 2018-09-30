@@ -21,15 +21,15 @@ namespace Project_D.Views
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class MainRulePage : Page
+    public sealed partial class RuleMasterPage : Page
     {
-        public MainRulePage()
+        public RuleMasterPage()
         {
             this.InitializeComponent();
-            MainRule = new MainRuleViewModel();
+            MainRule = new RuleMasterViewModel();
         }
 
-        public MainRuleViewModel MainRule { get; set; }
+        public RuleMasterViewModel MainRule { get; set; }
 
 
         protected override void OnNavigatedTo(NavigationEventArgs e)

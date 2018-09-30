@@ -1,0 +1,23 @@
+﻿<Page
+    x:Class="Project_D.Views.FileMainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Project_D.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewmodels="using:Project_D.ViewModels"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Page.Resources>
+        <DataTemplate x:Key="FileTemplate" x:DataType="viewmodels:FileViewModel">
+            <TextBlock Text="{x:Bind Filename}"></TextBlock>
+        </DataTemplate>
+    </Page.Resources>
+    
+    <Grid Name="FileMainGrid" AllowDrop="True" Drop="FileMainGrid_Drop">
+        <GridView ItemsSource="{x:Bind FileMain.Files}" 
+                  ItemTemplate="{StaticResource FileTemplate}">
+        </GridView>
+    </Grid>
+</Page>

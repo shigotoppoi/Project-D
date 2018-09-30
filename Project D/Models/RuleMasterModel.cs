@@ -7,9 +7,9 @@ using Project_D.Datas;
 
 namespace Project_D.Models
 {
-    public class MainRuleModel
+    public class RuleMasterModel
     {
-        public MainRuleModel()
+        public RuleMasterModel()
         {
             _dataService = new DataService();
             _rules = _dataService.GetRules().ToList();
