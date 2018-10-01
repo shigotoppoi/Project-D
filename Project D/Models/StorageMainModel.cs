@@ -7,16 +7,16 @@ using Project_D.Datas;
 
 namespace Project_D.Models
 {
-    class FileModel
+    class StorageMainModel
     {
-        public FileModel()
+        public StorageMainModel()
         {
-            _files = new List<File>();
+            _files = new List<Storage>();
         }
 
-        private List<File> _files;
+        private List<Storage> _files;
 
-        public void AddFile(File file)
+        public void AddStorage(Storage file)
         {
             if (!_files.Contains(file))
             {
@@ -24,15 +24,15 @@ namespace Project_D.Models
             }
         }
 
-        public void RemoveFile(File file)
+        public void RemoveStorage(Storage storage)
         {
-            if(!_files.Contains(file))
+            if(!_files.Contains(storage))
             {
-                _files.Remove(file);
+                _files.Remove(storage);
             }
         }
 
-        public List<File> GetFiles()
+        public List<Storage> GetStorages()
         {
             return _files;
         }

@@ -26,10 +26,10 @@ namespace Project_D.Views
         public RuleMasterPage()
         {
             this.InitializeComponent();
-            MainRule = new RuleMasterViewModel();
+            MainRule = new RuleMainViewModel();
         }
 
-        public RuleMasterViewModel MainRule { get; set; }
+        public RuleMainViewModel MainRule { get; set; }
 
 
         protected override void OnNavigatedTo(NavigationEventArgs e)

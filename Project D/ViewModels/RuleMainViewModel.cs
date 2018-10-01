@@ -9,20 +9,20 @@ using System.Threading.Tasks;
 
 namespace Project_D.ViewModels
 {
-    public class RuleMasterViewModel : NotificationBase
+    public class RuleMainViewModel : NotificationBase
     {
-        public RuleMasterViewModel()
+        public RuleMainViewModel()
         {
-            _RuleMaster = new RuleMasterModel();
+            _RuleMain = new RuleMainModel();
 
-            _RuleMaster.GetRules().ForEach(o =>
+            _RuleMain.GetRules().ForEach(o =>
             {
                 RuleViewModel rule = new RuleViewModel(o);
                 Rules.Add(rule);
             });
         }
 
-        private RuleMasterModel _RuleMaster;
+        private RuleMainModel _RuleMain;
 
 
         public ObservableCollection<RuleViewModel> Rules { get; } = new ObservableCollection<RuleViewModel>();
@@ -47,7 +47,7 @@ namespace Project_D.ViewModels
 
         public void AddRule(RuleViewModel rule)
         {
-            _RuleMaster.AddRule(rule);
+            _RuleMain.AddRule(rule);
             Rules.Add(rule);
             SelectedIndex = Rules.IndexOf(rule);
         }
@@ -57,7 +57,7 @@ namespace Project_D.ViewModels
             if (SelectedRule != null)
             {
                 var i = Rules.IndexOf(SelectedRule);
-                _RuleMaster.RemoveRule(SelectedRule);
+                _RuleMain.RemoveRule(SelectedRule);
                 Rules.Remove(SelectedRule);
                 SelectedIndex = i.Equals(0) ? ++i : --i;
             }
