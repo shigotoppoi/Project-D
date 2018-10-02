@@ -11,7 +11,7 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="320"></ColumnDefinition>
+            <ColumnDefinition Width="300"></ColumnDefinition>
             <ColumnDefinition Width="4*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
@@ -21,8 +21,13 @@
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
 
-            <AutoSuggestBox Margin="20" HorizontalAlignment="Stretch" QueryIcon="Find" PlaceholderText="Search rules"></AutoSuggestBox>
-            
+            <Button HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Background="LightGray" Click="AddRule_Click">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Height="36">
+                    <SymbolIcon Symbol="Add" Width="36"></SymbolIcon>
+                    <TextBlock Text="Add New Rule" VerticalAlignment="Center" FontSize="16"></TextBlock>
+                </StackPanel>
+            </Button>
+
             <ListView Name="Rules"  
                       Grid.Row="1"
                       ItemsSource="{x:Bind RuleMain.Rules}" 
@@ -31,7 +36,7 @@
                       ItemClick="Rules_ItemClick">
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="viewModels:RuleViewModel">
-                        <TextBlock Text="{x:Bind Name}" Style="{StaticResource SectionSubTitle}" ></TextBlock>
+                        <TextBlock Text="{x:Bind Name}" Style="{StaticResource SectionText}" ></TextBlock>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
@@ -45,12 +50,11 @@
 
             <CommandBar Grid.Row="0" RelativePanel.AlignRightWithPanel="True" Style="{StaticResource CommandBarPageBackground}">
                 <AppBarButton Name="EditRuleButton" Icon="Edit" Click="EditRule_Click" Content="Edit"></AppBarButton>
-                <AppBarButton Name="AddRuleButton" Icon="Add" Click="AddRule_Click" Content="Add"></AppBarButton>
                 <AppBarButton Name="RemoveRuleButton" Icon="Remote" Click="{x:Bind RuleMain.RemoveRule}" Content="Remove"></AppBarButton>
             </CommandBar>
             <Frame Grid.Row="1" Name="RuleDetailFrame" Margin="{StaticResource ContentMargin}"></Frame>
         </Grid>
-        
-      
+
+
     </Grid>
 </Page>

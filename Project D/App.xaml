@@ -6,7 +6,7 @@
 
     <Application.Resources>
 
-        <Thickness x:Key="ContentMargin">15</Thickness>
+        <Thickness x:Key="ContentMargin">15 0 15 0</Thickness>
         <Thickness x:Key="ItemMargin">10</Thickness>
         
         <Style x:Key="SectionText" TargetType="TextBlock">
@@ -38,6 +38,7 @@
         <Style x:Key="CommandBarPageBackground" TargetType="CommandBar">
             <Setter Property="Background" Value="{StaticResource ApplicationPageBackgroundThemeBrush}"></Setter>
         </Style>
+
 
     </Application.Resources>
 </Application>
