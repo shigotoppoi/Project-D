@@ -34,5 +34,7 @@ namespace Project_D.ViewModels
                 Storages.Remove(storage);
             }
         }
+
+        
     }
 }

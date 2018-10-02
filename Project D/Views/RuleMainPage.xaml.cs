@@ -21,15 +21,15 @@ namespace Project_D.Views
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class RuleMasterPage : Page
+    public sealed partial class RuleMainPage : Page
     {
-        public RuleMasterPage()
+        public RuleMainPage()
         {
             this.InitializeComponent();
-            MainRule = new RuleMainViewModel();
+            RuleMain = new RuleMainViewModel();
         }
 
-        public RuleMainViewModel MainRule { get; set; }
+        public RuleMainViewModel RuleMain { get; set; }
 
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -38,7 +38,7 @@ namespace Project_D.Views
 
             if (rule != null)
             {
-                MainRule.AddRule(rule);
+                RuleMain.AddRule(rule);
             }
 
             base.OnNavigatedTo(e);
@@ -47,7 +47,7 @@ namespace Project_D.Views
 
         private void Rules_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            RuleDetailFrame.Navigate(typeof(DisplayRuleDetailPage), MainRule.SelectedRule);
+            RuleDetailFrame.Navigate(typeof(DisplayRuleDetailPage), RuleMain.SelectedRule);
         }
 
         private void Rules_ItemClick(object sender, ItemClickEventArgs e)
@@ -65,14 +65,15 @@ namespace Project_D.Views
 
         }
 
-        private void AddRuleButton_Click(object sender, RoutedEventArgs e)
+
+        private void EditRule_Click(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(EditRuleDetailPage));
+            Frame.Navigate(typeof(EditRuleDetailPage), RuleMain.SelectedRule);
         }
 
-        private void EditRuleButton_Click(object sender, RoutedEventArgs e)
+        private void AddRule_Click(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(EditRuleDetailPage), MainRule.SelectedRule);
+            Frame.Navigate(typeof(EditRuleDetailPage));
         }
     }
 }

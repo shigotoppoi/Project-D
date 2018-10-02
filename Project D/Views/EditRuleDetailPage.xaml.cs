@@ -44,7 +44,7 @@ namespace Project_D.Views
 
         private void CancelEdit_Click(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(RuleMasterPage), Rule);
+            Frame.Navigate(typeof(RuleMainPage), Rule);
         }
 
         private void ConfirmEdit_Click(object sender, RoutedEventArgs e)
@@ -54,7 +54,7 @@ namespace Project_D.Views
             Rule.Format = FormatTextBox.Text;
             Rule.CreateIfNew = CreateIfNewCheckBox.IsChecked ?? false;
             Rule.Extensions = ExtensionsTextBox.Text;
-            Frame.Navigate(typeof(RuleMasterPage), Rule);
+            Frame.Navigate(typeof(RuleMainPage), Rule);
         }
     }
 }

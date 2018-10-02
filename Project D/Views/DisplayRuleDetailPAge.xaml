@@ -8,12 +8,24 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
+    <Page.Resources>
+        <Style x:Key="ItemIcon" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Segoe MDL2 Assets"></Setter>
+            <Setter Property="FontSize" Value="18"></Setter>
+        </Style>    
+    </Page.Resources>
+    
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0">
+
+        <TextBlock Grid.Row="0" Name="RuleNameTextBox" Text="{x:Bind Rule.Name, Mode=OneWay}" Style="{StaticResource SectionTitle}"></TextBlock>
+
+        <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
@@ -26,24 +38,25 @@
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
 
-            <TextBlock Grid.Column="0" Grid.Row="0" Text="Name" Style="{StaticResource itemStyle}"></TextBlock>
-            <TextBlock Grid.Column="1" Grid.Row="0" Name="RuleNameTextBox"
-                            Text="{x:Bind Rule.Name, Mode=OneWay}"></TextBlock>
-            <TextBlock Grid.Column="0" Grid.Row="1" Text="Destination" Style="{StaticResource itemStyle}"></TextBlock>
-            <TextBlock Grid.Column="1" Grid.Row="1" Name="DestinationTextBox"
-                            Text="{x:Bind Rule.Destination, Mode=OneWay}"></TextBlock>
-            <TextBlock Grid.Column="0" Grid.Row="2" Text="Format" Style="{StaticResource itemStyle}"></TextBlock>
-            <TextBlock Grid.Column="1" Grid.Row="2" Name="FormatTextBox"
-                            Text="{x:Bind Rule.Format, Mode=OneWay}"></TextBlock>
-            <TextBlock Grid.Column="0" Grid.Row="3" Text="CreateIfNew" Style="{StaticResource itemStyle}"></TextBlock>
-            <TextBlock Grid.Column="1" Grid.Row="3" Name="CreateIfNewCheckBox" 
-                            Text="{x:Bind Rule.CreateIfNew, Mode=OneWay}"></TextBlock>
-            <TextBlock Grid.Column="0" Grid.Row="4" Text="Extensions" Style="{StaticResource itemStyle}"></TextBlock>
-            <TextBlock Grid.Column="1" Grid.Row="4" Name="ExtensionsTextBox"
-                            Text="{x:Bind Rule.Extensions, Mode=OneWay}"></TextBlock>
+            <TextBlock Grid.Column="0" Grid.Row="1" Text="Destination" Style="{StaticResource SectionText}"></TextBlock>
+            <TextBlock Grid.Column="1" Grid.Row="1" Name="DestinationTextBox" Text="{x:Bind Rule.Destination, Mode=OneWay}" Style="{StaticResource SectionText}"></TextBlock>
+            
+            <TextBlock Grid.Column="0" Grid.Row="2" Text="Format" Style="{StaticResource SectionText}"></TextBlock>
+            <TextBlock Grid.Column="1" Grid.Row="2" Name="FormatTextBox" Text="{x:Bind Rule.Format, Mode=OneWay}" Style="{StaticResource SectionText}"></TextBlock>
+            
+            <TextBlock Grid.Column="0" Grid.Row="3" Text="CreateIfNew" Style="{StaticResource SectionText}"></TextBlock>
+            <TextBlock Grid.Column="1" Grid.Row="3" Name="CreateIfNewCheckBox" Text="{x:Bind Rule.CreateIfNew, Mode=OneWay}" Style="{StaticResource SectionText}"></TextBlock>
+            
+            <TextBlock Grid.Column="0" Grid.Row="4" Text="Extensions" Style="{StaticResource SectionText}"></TextBlock>
+            <StackPanel Grid.Column="1" Grid.Row="4">
+                <TextBlock  Name="ExtensionsTextBox" Text="{x:Bind Rule.Extensions, Mode=OneWay}" Style="{StaticResource SectionText}"></TextBlock>
+                <TextBlock Text="comment" Style="{StaticResource SectionAnnotation}"></TextBlock>
+            </StackPanel>
+            
         </Grid>
-        <RelativePanel Grid.Row="1">
-            <Button Name="SelectButton" Content="Select" Click="SelectButton_Click"></Button>
+        
+        <RelativePanel Grid.Row="3">
+            <Button Name="SelectButton" Content="Select" Click="SelectButton_Click" Margin="20" RelativePanel.AlignRightWithPanel="True"></Button>
         </RelativePanel>
     </Grid>
 </Page>

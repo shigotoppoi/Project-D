@@ -32,37 +32,21 @@
 
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
                 <ColumnDefinition Width="auto"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-
-            <CommandBar  Grid.Column="0" DefaultLabelPosition="Right" FlowDirection="RightToLeft" HorizontalAlignment="Stretch">
+            
+            <CommandBar  Grid.Column="1" >
+                <CommandBar.Content>
+                    <AppBarButton Style="{StaticResource BackAppBarButton}"></AppBarButton>
+                </CommandBar.Content>
                 <AppBarButton Icon="Accept" Label="P"></AppBarButton>
                 <AppBarButton Icon="Cancel" Label="P"></AppBarButton>
                 <AppBarButton Icon="Save" Label="S"></AppBarButton>
-                <AppBarButton>
-                    <AppBarButton.Flyout>
-                        <MenuFlyout>
-                            <MenuFlyoutItem Text="By rating"  Tag="rating" />
-                            <MenuFlyoutItem Text="By match"  Tag="match" />
-                            <MenuFlyoutItem Text="By distance"  Tag="distance"/>
-                        </MenuFlyout>
-                    </AppBarButton.Flyout>
-                </AppBarButton>
-                <CommandBar.Content>
-                    <RelativePanel  >
-                        <TextBlock Text="Select" VerticalAlignment="Center"></TextBlock>
-                        <ComboBox VerticalAlignment="Center" MinHeight="48" x:Name="list" RelativePanel.AlignRightWithPanel="True">
-                            <ComboBoxItem>1</ComboBoxItem>
-                            <ComboBoxItem>2</ComboBoxItem>
-                            <ComboBoxItem>3</ComboBoxItem>
-                            <ComboBoxItem>4</ComboBoxItem>
-                            <ComboBoxItem>5</ComboBoxItem>
-                        </ComboBox>
-                    </RelativePanel>
-                </CommandBar.Content>
+
             </CommandBar>
-            <AutoSuggestBox Grid.Column="1" Width="200" HorizontalAlignment="Stretch"></AutoSuggestBox>
+            <AutoSuggestBox Grid.Column="2" Width="200"></AutoSuggestBox>
         </Grid>
 
         <GridView Grid.Row="1" ItemsSource="{x:Bind StorageMain.Storages}" 

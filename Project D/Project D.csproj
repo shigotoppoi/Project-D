@@ -143,8 +143,8 @@
     <Compile Include="Views\StorageMainPage.xaml.cs">
       <DependentUpon>StorageMainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\RuleMasterPage.xaml.cs">
-      <DependentUpon>RuleMasterPage.xaml</DependentUpon>
+    <Compile Include="Views\RuleMainPage.xaml.cs">
+      <DependentUpon>RuleMainPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -184,7 +184,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\RuleMasterPage.xaml">
+    <Page Include="Views\RuleMainPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
