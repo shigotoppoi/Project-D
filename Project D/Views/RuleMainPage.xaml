@@ -48,7 +48,7 @@
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
 
-            <CommandBar Grid.Row="0" RelativePanel.AlignRightWithPanel="True" Style="{StaticResource CommandBarPageBackground}">
+            <CommandBar Grid.Row="0" RelativePanel.AlignRightWithPanel="True" Background="Transparent">
                 <AppBarButton Name="EditRuleButton" Icon="Edit" Click="EditRule_Click" Content="Edit"></AppBarButton>
                 <AppBarButton Name="RemoveRuleButton" Icon="Remote" Click="{x:Bind RuleMain.RemoveRule}" Content="Remove"></AppBarButton>
             </CommandBar>

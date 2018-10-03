@@ -121,14 +121,20 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Datas\DataService.cs" />
+    <Compile Include="Datas\Kind.cs" />
+    <Compile Include="Datas\SortedKind.cs" />
     <Compile Include="Datas\Storage.cs" />
     <Compile Include="Datas\Rule.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\SortedKindModel.cs" />
     <Compile Include="Models\StorageMainModel.cs" />
     <Compile Include="Models\RuleMainModel.cs" />
+    <Compile Include="ObservableCollectionExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\Customer.cs" />
+    <Compile Include="ViewModels\SortedKindViewModel.cs" />
     <Compile Include="ViewModels\StorageMainViewModel.cs" />
     <Compile Include="ViewModels\StorageViewModel.cs" />
     <Compile Include="ViewModels\NotificationBase.cs" />

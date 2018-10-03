@@ -39,6 +39,9 @@
             <Setter Property="Background" Value="{StaticResource ApplicationPageBackgroundThemeBrush}"></Setter>
         </Style>
 
+        <Style x:Key="AppBar" TargetType="RelativePanel">
+            <Setter Property="Height" Value="48"></Setter>
+        </Style>
 
     </Application.Resources>
 </Application>
