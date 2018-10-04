@@ -12,5 +12,6 @@ namespace Project_D.Datas
         public string Path { get; set; }
         public string DisplayName { get; set; }
         public BitmapImage Thumbnail { get; set; }
+        public string Extension { get; set; }
     }
 }

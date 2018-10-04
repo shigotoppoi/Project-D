@@ -14,7 +14,7 @@ namespace Project_D.Models
             return new List<SortedKind>
             {
                 new SortedKind(Kind.Name,"Name"),
-                new SortedKind(Kind.Category,"Category"),
+                new SortedKind(Kind.Extension,"Extension"),
                 new SortedKind(Kind.Path,"Path"),
             }.OrderBy(o => (int)o.Kind);
         }

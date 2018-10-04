@@ -17,6 +17,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
+using Windows.Storage.Pickers;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -34,7 +35,8 @@ namespace Project_D.Views
             StorageMain = new StorageMainViewModel();
         }
 
-        private StorageMainViewModel StorageMain { get; set; }
+        private object _RightTappedData;
+        internal StorageMainViewModel StorageMain { get; set; }
 
         private async void FileMainGrid_Drop(object sender, DragEventArgs e)
         {
@@ -47,30 +49,55 @@ namespace Project_D.Views
                     {
                         var bitmapImage = new BitmapImage();
                         bitmapImage.SetSource(await storageFile.GetThumbnailAsync(Windows.Storage.FileProperties.ThumbnailMode.SingleItem));
-                        StorageMain.AddStorage(storageFile.DisplayName, storageFile.Path, bitmapImage);
+                        
+                        StorageMain.AddStorage(storageFile.DisplayName, storageFile.Path, bitmapImage, storageFile.FileType);
                     }
                     else if (item is StorageFolder storageFolder)
                     {
                         var bitmapImage = new BitmapImage();
                         bitmapImage.SetSource(await storageFolder.GetThumbnailAsync(Windows.Storage.FileProperties.ThumbnailMode.SingleItem));
-                        StorageMain.AddStorage(storageFolder.DisplayName, storageFolder.Path, bitmapImage);
+                        StorageMain.AddStorage(storageFolder.DisplayName, storageFolder.Path, bitmapImage, null);
                     }
-
-
                 }
             }
         }
 
-        private void FileMainGrid_DragOver(object sender, DragEventArgs e)
+        private void StorageGrid_DragOver(object sender, DragEventArgs e)
         {
             e.AcceptedOperation = DataPackageOperation.Link;
         }
 
-        private void SortedType_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void SortedKind_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var item = e.AddedItems.FirstOrDefault();
             StorageMain.SortStorage(item);
-            //StorageView.ItemsSource = StorageMain.Storages;
+        }
+
+        private void SortedKind_DropDownClosed(object sender, object e)
+        {
+            var cb = sender as ComboBox;
+            StorageMain.SortStorage(cb.SelectedItem);
+        }
+
+        private void StoragesViewMenu_Click(object sender, RoutedEventArgs e)
+        {
+            var item = sender as MenuFlyoutItem;
+            switch(item.Name)
+            {
+                case nameof(DeleteMenu):
+                    StorageMain.RemoveStorages(StoragesGridView.SelectedItems);
+                    break;
+                case nameof(RenameMenu):
+                    
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void StoragesGridView_RightTapped(object sender, RightTappedRoutedEventArgs e)
+        {
+            _RightTappedData= (e.OriginalSource as FrameworkElement)?.DataContext;
         }
     }
 }

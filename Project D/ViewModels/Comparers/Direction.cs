@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Project_D.Datas
+namespace Project_D.ViewModels
 {
-    internal enum Kind
+    internal enum Direction
     {
-        Name,Extension,Path
+        Ascendant, Descendant
     }
 }

@@ -32,5 +32,11 @@ namespace Project_D.ViewModels
             get => This.Thumbnail;
             set => SetProperty(This.Thumbnail, value, () => This.Thumbnail = value);
         }
+
+        public string Extension
+        {
+            get => This.Extension;
+            set => SetProperty(This.Extension, value, () => This.Extension = value);
+        }
     }
 }

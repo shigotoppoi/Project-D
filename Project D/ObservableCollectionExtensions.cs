@@ -9,11 +9,11 @@ namespace Project_D
 {
     internal static class ObservableCollectionExtensions
     {
-        public static void Sort<T,TKey>(this ObservableCollection<T> collection,Func<T,TKey> keySelector)
+        public static void Sort<T>(this ObservableCollection<T> collection, IComparer<T> comparer)
         {
-            var r = collection.OrderBy(keySelector).ToList();
+            SortedSet<T> sort = new SortedSet<T>(collection, comparer);
             collection.Clear();
-            foreach(var t in r)
+            foreach (var t in sort)
             {
                 collection.Add(t);
             }
