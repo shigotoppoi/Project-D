@@ -1,5 +1,4 @@
-﻿
-using Project_D.Models;
+﻿using Project_D.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -9,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.UI.Xaml.Media.Imaging;
+
 
 namespace Project_D.ViewModels
 {
@@ -51,6 +51,22 @@ namespace Project_D.ViewModels
             _Storages.Add(storage);
         }
 
+        public async void AddStorage(StorageFile file)
+        {
+            var bitmapImage = new BitmapImage();
+            bitmapImage.SetSource(await file.GetThumbnailAsync(Windows.Storage.FileProperties.ThumbnailMode.SingleItem));
+            StorageViewModel storage = new StorageViewModel
+            {
+                DisplayName = file.DisplayName,
+                Path = file.Path,
+                Thumbnail = bitmapImage,
+                Extension = file.FileType,
+                File=file,
+            };
+            _storageMainModel.AddStorage(storage);
+            _Storages.Add(storage);
+        }
+
         public void RemoveStorages(IEnumerable<object> items)
         {
             foreach (var item in items)
@@ -83,11 +99,7 @@ namespace Project_D.ViewModels
         {
             if (item is StorageViewModel storage)
             {
-                var folder = Path.GetDirectoryName(storage.Path);
-                var filename = Path.GetFileName(storage.Path);
-                var storageFolder = await StorageFolder.GetFolderFromPathAsync(folder);
-                var storageFile = await storageFolder.GetFileAsync(filename);
-                //storageFile.RenameAsync()
+                await storage.File.RenameAsync("22222");
             }
         }
     }

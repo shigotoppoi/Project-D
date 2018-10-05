@@ -14,10 +14,10 @@
         <DataTemplate x:Key="StorageTemplate" x:DataType="viewmodels:StorageViewModel">
             <StackPanel Orientation="Horizontal">
                 <Image Name="Picture" Source="{x:Bind Thumbnail}"></Image>
-                <StackPanel>
-                    <TextBlock Name="TYU" Text="{x:Bind DisplayName, Mode=TwoWay}"></TextBlock>
-                    <TextBox x:Name="FileInEdit" Text="{x:Bind DisplayName, Mode=TwoWay}" Visibility="Collapsed"></TextBox>
-                    <TextBlock Text="{x:Bind Path}"></TextBlock>
+                <StackPanel >
+                    <TextBlock Name="ShowName" Text="{x:Bind DisplayName, Mode=OneWay}" ></TextBlock>
+                    <TextBox Name="EditName" Text="{x:Bind DisplayName, Mode=TwoWay}" Visibility="Collapsed" LostFocus="EditName_LostFocus"></TextBox>
+                    <TextBlock Text="{x:Bind Path}" ></TextBlock>
                 </StackPanel>
 
             </StackPanel>
@@ -55,7 +55,8 @@
 
         <GridView Grid.Row="1" Name="StoragesGridView" ItemsSource="{x:Bind StorageMain.Storages, Mode=OneWay}" ItemTemplate="{StaticResource StorageTemplate}"
                   SelectionMode="Extended"
-                  RightTapped="StoragesGridView_RightTapped">
+                  RightTapped="StoragesGridView_RightTapped"
+                  ItemClick="StoragesGridView_ItemClick">
             <GridView.ContextFlyout>
                 <MenuFlyout>
                     <MenuFlyoutItem Name="DeleteMenu" Text="Delete" Click="StoragesViewMenu_Click"/>

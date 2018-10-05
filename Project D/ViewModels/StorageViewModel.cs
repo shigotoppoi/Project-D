@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.Storage;
 using Windows.UI.Xaml.Media.Imaging;
 
 namespace Project_D.ViewModels
@@ -38,5 +39,7 @@ namespace Project_D.ViewModels
             get => This.Extension;
             set => SetProperty(This.Extension, value, () => This.Extension = value);
         }
+
+        public StorageFile File { get; set; }
     }
 }

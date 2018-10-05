@@ -1,4 +1,5 @@
-﻿using Project_D.ViewModels;
+﻿using Microsoft.Toolkit.Uwp.UI.Extensions;
+using Project_D.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -9,6 +10,7 @@ using Windows.ApplicationModel.DataTransfer;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Storage;
+using Windows.Storage.Pickers;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -17,7 +19,6 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
-using Windows.Storage.Pickers;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -35,7 +36,7 @@ namespace Project_D.Views
             StorageMain = new StorageMainViewModel();
         }
 
-        private object _RightTappedData;
+        private GridViewItem _RightTappedGridViewItem;
         internal StorageMainViewModel StorageMain { get; set; }
 
         private async void FileMainGrid_Drop(object sender, DragEventArgs e)
@@ -49,8 +50,8 @@ namespace Project_D.Views
                     {
                         var bitmapImage = new BitmapImage();
                         bitmapImage.SetSource(await storageFile.GetThumbnailAsync(Windows.Storage.FileProperties.ThumbnailMode.SingleItem));
-                        
-                        StorageMain.AddStorage(storageFile.DisplayName, storageFile.Path, bitmapImage, storageFile.FileType);
+                         await storageFile.RenameAsync("sssss");
+                        StorageMain.AddStorage(storageFile);
                     }
                     else if (item is StorageFolder storageFolder)
                     {
@@ -82,22 +83,52 @@ namespace Project_D.Views
         private void StoragesViewMenu_Click(object sender, RoutedEventArgs e)
         {
             var item = sender as MenuFlyoutItem;
-            switch(item.Name)
+            switch (item.Name)
             {
                 case nameof(DeleteMenu):
                     StorageMain.RemoveStorages(StoragesGridView.SelectedItems);
                     break;
                 case nameof(RenameMenu):
-                    
+                    if (_RightTappedGridViewItem != null)
+                    {
+                        var show = _RightTappedGridViewItem.FindDescendantByName("ShowName");
+                        var edit = _RightTappedGridViewItem.FindDescendantByName("EditName");
+                        show.Visibility = Visibility.Collapsed;
+                        edit.Visibility = Visibility.Visible;
+                        
+                    }
                     break;
                 default:
                     break;
             }
+
+            TextBox d = new TextBox();
+            //d.focu
         }
 
         private void StoragesGridView_RightTapped(object sender, RightTappedRoutedEventArgs e)
         {
-            _RightTappedData= (e.OriginalSource as FrameworkElement)?.DataContext;
+            var item = (e.OriginalSource as FrameworkElement)?.DataContext;
+            _RightTappedGridViewItem = StoragesGridView.ContainerFromItem(item) as GridViewItem;
+        }
+
+        private void StoragesGridView_ItemClick(object sender, ItemClickEventArgs e)
+        {
+
+        }
+
+        private void EditName_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (_RightTappedGridViewItem != null)
+            {
+                var show = _RightTappedGridViewItem.FindDescendantByName("ShowName");
+                var edit = _RightTappedGridViewItem.FindDescendantByName("EditName");
+                show.Visibility = Visibility.Visible;
+                edit.Visibility = Visibility.Collapsed;
+
+                StorageMain.RenameStorage(edit.DataContext);
+            }
+            
         }
     }
 }
