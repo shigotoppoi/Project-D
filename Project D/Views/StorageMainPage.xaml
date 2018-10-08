@@ -34,8 +34,7 @@
             <RowDefinition Height="auto"></RowDefinition>
         </Grid.RowDefinitions>
 
-        <RelativePanel Style="{StaticResource AppBar}">
-            <AppBarButton Icon="Back"></AppBarButton>
+        <RelativePanel >
             <ComboBox Name="SortedKind" 
                       RelativePanel.LeftOf="SortedDirection" RelativePanel.AlignVerticalCenterWith="SortedDirection"
                       PlaceholderText="XXXXXXXXXXXXX" Width="200"
@@ -44,9 +43,18 @@
                       ItemsSource="{x:Bind StorageMain.SortedKinds}"
                       >
             </ComboBox>
-            <Button Name="SortedDirection" RelativePanel.LeftOf="Filter" RelativePanel.AlignVerticalCenterWith="Filter" Background="Transparent">
-                <SymbolIcon Symbol="Sort"></SymbolIcon>
-            </Button>
+            <CommandBar OverflowButtonVisibility="Collapsed" >
+                <AppBarButton Icon="Back" Click="Back_Click"></AppBarButton>
+            </CommandBar>
+            <CommandBar RelativePanel.LeftOf="Filter" OverflowButtonVisibility="Collapsed">
+                <AppBarButton Icon="Sort">
+                    <AppBarButton.Flyout>
+                        <MenuFlyout>
+                            
+                        </MenuFlyout>
+                    </AppBarButton.Flyout>
+                </AppBarButton>
+            </CommandBar>
             <AutoSuggestBox Name="Filter" 
                             RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True" 
                             Width="200" Margin="0 0 10 0"
@@ -66,7 +74,8 @@
         </GridView>
 
         <RelativePanel Grid.Row="2" Style="{StaticResource AppBar}">
-
+            <TextBlock Text="{x:Bind StorageMain.Storages.Count,Mode=OneWay}"></TextBlock>
+            <Button RelativePanel.AlignRightWithPanel="True"></Button>
 
         </RelativePanel>
         

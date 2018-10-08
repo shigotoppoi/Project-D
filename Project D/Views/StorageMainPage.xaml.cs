@@ -50,8 +50,8 @@ namespace Project_D.Views
                     {
                         var bitmapImage = new BitmapImage();
                         bitmapImage.SetSource(await storageFile.GetThumbnailAsync(Windows.Storage.FileProperties.ThumbnailMode.SingleItem));
-                         await storageFile.RenameAsync("sssss");
-                        StorageMain.AddStorage(storageFile);
+                        //await storageFile.RenameAsync("sssss");
+                        StorageMain.AddStorage(storageFile.DisplayName, storageFile.Path, bitmapImage, storageFile.FileType);
                     }
                     else if (item is StorageFolder storageFolder)
                     {
@@ -95,7 +95,7 @@ namespace Project_D.Views
                         var edit = _RightTappedGridViewItem.FindDescendantByName("EditName");
                         show.Visibility = Visibility.Collapsed;
                         edit.Visibility = Visibility.Visible;
-                        
+
                     }
                     break;
                 default:
@@ -128,7 +128,12 @@ namespace Project_D.Views
 
                 StorageMain.RenameStorage(edit.DataContext);
             }
-            
+
+        }
+
+        private void Back_Click(object sender, RoutedEventArgs e)
+        {
+            if (Frame.CanGoBack) Frame.GoBack();
         }
     }
 }

@@ -51,22 +51,6 @@ namespace Project_D.ViewModels
             _Storages.Add(storage);
         }
 
-        public async void AddStorage(StorageFile file)
-        {
-            var bitmapImage = new BitmapImage();
-            bitmapImage.SetSource(await file.GetThumbnailAsync(Windows.Storage.FileProperties.ThumbnailMode.SingleItem));
-            StorageViewModel storage = new StorageViewModel
-            {
-                DisplayName = file.DisplayName,
-                Path = file.Path,
-                Thumbnail = bitmapImage,
-                Extension = file.FileType,
-                File=file,
-            };
-            _storageMainModel.AddStorage(storage);
-            _Storages.Add(storage);
-        }
-
         public void RemoveStorages(IEnumerable<object> items)
         {
             foreach (var item in items)
@@ -99,7 +83,8 @@ namespace Project_D.ViewModels
         {
             if (item is StorageViewModel storage)
             {
-                await storage.File.RenameAsync("22222");
+                var file = await StorageFile.GetFileFromPathAsync(storage.Path);
+                await file.RenameAsync(storage.DisplayName);
             }
         }
     }
