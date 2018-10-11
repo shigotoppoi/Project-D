@@ -137,6 +137,7 @@
     <Compile Include="ViewModels\Customer.cs" />
     <Compile Include="ViewModels\Comparers\ExtensionComparer.cs" />
     <Compile Include="ViewModels\Comparers\NameComparer.cs" />
+    <Compile Include="ViewModels\Parse.cs" />
     <Compile Include="ViewModels\SortedKindViewModel.cs" />
     <Compile Include="ViewModels\Comparers\StorageComparerBase.cs" />
     <Compile Include="ViewModels\StorageMainViewModel.cs" />
