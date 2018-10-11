@@ -9,11 +9,10 @@ namespace Test
         private static void Main(string[] args)
         {
             //string s = @"\(s\)\(s\) \[n \(s\)\]s";
-            string s = @"\[s\] n \[s\]s";
-            string g = "g";
-            g.Substring(0, 3);
+            string s = @"[skip] name [skip]s";
 
-            //ss(s);
+            var r= new tt().ParseFormat(s);
+            r.ToString();
 
             //string filename = @"(765)(test) [HERE (qq)] we are the world";
             string filename = @"[fin] HERE [0710][tv][12]";
@@ -21,7 +20,44 @@ namespace Test
 
 
 
-        public static string yy(List<char> keywords,string filename)
+        
+    }
+
+    class tt
+    {
+        readonly string SKIP = "skip";
+        readonly string NAME = "name";
+
+        string[] codes = new string[] { "skip", "name" };
+
+        public List<string> ParseFormat(string format)
+        {
+            // \(s\)\(s\) \[n \(s\)\]s
+            List<string> keywords = new List<string>();
+            for (int i = 0; i < format.Length; i++)
+            {
+                char c = format[i];
+
+                if ((65 <= c && c <= 90) || (97 <= c && c <= 122))
+                {
+                    foreach (var code in codes)
+                    {
+                        if (format.IndexOf(code, i, StringComparison.OrdinalIgnoreCase).Equals(i))
+                        {
+                            var r = format.Substring(i, code.Length);
+                            keywords.Add(r);
+                        }
+                    }
+                }
+                else
+                {
+                    keywords.Add(c.ToString());
+                }
+            }
+            return keywords;
+        }
+
+        public string yy(List<string> keywords, string filename)
         {
             string name = null;
             int position = 0;
@@ -78,51 +114,6 @@ namespace Test
             }
             name.ToString();
             return name;
-        }
-    }
-
-    class  tt
-    {
-        readonly string SKIP="skip";
-        readonly string NAME = "name";
-
-        public List<char> ss(string format)
-        {
-            // \(s\)\(s\) \[n \(s\)\]s
-            List<string> keywords = new List<string>();
-
-
-            for (int i = 0; i<format.Length; i++)
-            {
-                string c = format[i].ToString();
-                if (c.Equals("s",StringComparison.OrdinalIgnoreCase))
-                {
-                    var skip = "skip";
-                    var code = hh(format, i, skip);
-                    keywords.Add(code);
-                }
-                else if (c.Equals("n",StringComparison.OrdinalIgnoreCase))
-                {
-                    var name = "name";
-                    var r = format.IndexOf(name,i);
-                    if (!r.Equals(i)) continue;
-                    var code = text.Substring(start, target.Length);
-                }
-                else
-                {
-                    keywords.Add(c);
-                }
-            }
-            return keywords;
-        }
-
-
-        private string hh(string text,int start,string target)
-        {
-            var r = text.IndexOf(target, start);
-            if (!r.Equals(start)) return null;
-            var code = text.Substring(start, target.Length);
-            return code;
         }
     }
 }
