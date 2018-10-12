@@ -10,8 +10,10 @@ namespace Project_D.Datas
     class Storage
     {
         public string Path { get; set; }
-        public string DisplayName { get; set; }
+        public string Name { get; set; }
         public BitmapImage Thumbnail { get; set; }
         public string Extension { get; set; }
+        public string FullName => Extension is null ? Name : $"{Name}.{Extension}";
+        public bool IsFile => Extension is null ? false : true;
     }
 }

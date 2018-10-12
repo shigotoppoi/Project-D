@@ -1,30 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Project_D.Datas;
 
-namespace Test
+namespace Project_D.ViewModels
 {
-    internal class Program
-    {
-        private static void Main(string[] args)
-        {
-            //string s = @"\(s\)\(s\) \[n \(s\)\]s";
-            string s = @"[skip] name [skip]s";
-
-            var r = new RuleParser().ParseFormat(s);
-            r.ToString();
-
-            //string filename = @"(765)(test) [HERE (qq)] we are the world";
-            string filename = @"[fin] HERE [0710][tv][12]";
-        }
-
-
-
-
-    }
-
     internal class RuleParser
     {
+
         private readonly string SKIP = "skip";
         private readonly string NAME = "name";
         private string[] codes = new string[] { "skip", "name" };
@@ -56,19 +41,19 @@ namespace Test
             return keywords;
         }
 
-        public string ParseFilename(List<string> keywords, string filename)
+        public string ParseName(List<string> formatKeys, string name)
         {
-            string name = null;
+            string result = null;
             int filenameIndex = 0;
-            for (int i = 0; i < keywords.Count; i++)
+            for (int i = 0; i < formatKeys.Count; i++)
             {
-                string currentKey = keywords[i];
-                string nextKey = keywords.ElementAtOrDefault(i + 1);
-                for (; filenameIndex < filename.Length; filenameIndex++)
+                string currentKey = formatKeys[i];
+                string nextKey = formatKeys.ElementAtOrDefault(i + 1);
+                for (; filenameIndex < name.Length; filenameIndex++)
                 {
                     if (currentKey.Equals("skip", StringComparison.OrdinalIgnoreCase))
                     {
-                        if (filename[filenameIndex].Equals(nextKey))
+                        if (name[filenameIndex].Equals(nextKey))
                         {
                             break;
                         }
@@ -79,11 +64,11 @@ namespace Test
                     }
                     else if (currentKey.Equals("name", StringComparison.OrdinalIgnoreCase))
                     {
-                        for (int j = filenameIndex; j < filename.Length; j++)
+                        for (int j = filenameIndex; j < name.Length; j++)
                         {
-                            if (filename[j].Equals(nextKey))
+                            if (name[j].Equals(nextKey))
                             {
-                                name = filename.Substring(filenameIndex, j - filenameIndex);
+                                result = name.Substring(filenameIndex, j - filenameIndex);
                                 break;
                             }
                             else
@@ -93,7 +78,7 @@ namespace Test
                         }
                         break;
                     }
-                    else if (currentKey.Equals(filename[filenameIndex]))
+                    else if (currentKey.Equals(name[filenameIndex]))
                     {
                         filenameIndex = filenameIndex + 1;
                         break;
@@ -104,10 +89,10 @@ namespace Test
                     }
                 }
 
-                if (name != null) break;
+                if (result != null) break;
             }
 
-            return name;
+            return result;
         }
     }
 }

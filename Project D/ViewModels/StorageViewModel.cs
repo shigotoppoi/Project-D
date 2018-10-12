@@ -18,8 +18,8 @@ namespace Project_D.ViewModels
 
         public string DisplayName
         {
-            get => This.DisplayName;
-            set => SetProperty(This.DisplayName, value, () => This.DisplayName = value);
+            get => This.Name;
+            set => SetProperty(This.Name, value, () => This.Name = value);
         }
 
         public string Path

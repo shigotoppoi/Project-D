@@ -12,27 +12,36 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using Project_D.Views;
+using Project_D.ViewModels;
 
-// The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
+// The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
-namespace Project_D
+namespace Project_D.Views
 {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class MainPage : Page
+    public sealed partial class ResultProgressPage : Page
     {
-        public MainPage()
+        public ResultProgressPage()
         {
             this.InitializeComponent();
         }
 
-        public void Page_Loaded(object sender, RoutedEventArgs e)
+        IProgressViewModel _progress;
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            Frame.Navigate(typeof(ResultProgressPage));
+            base.OnNavigatedTo(e);
+
+            _progress = e.Parameter as IProgressViewModel;
+
+            CircularProgress.va.va
         }
 
+        private void CircularProgress_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
+        {
 
+        }
     }
 }

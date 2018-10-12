@@ -37,9 +37,9 @@ namespace Project_D.ViewModels
 
         public string Extensions
         {
-            get => This.Extensions;
+            get => This.AcceptedExtensions;
             //set => _Set(This.Extensions, value, nameof(Extensions));
-            set => SetProperty(This.Extensions, value, () => This.Extensions = value);
+            set => SetProperty(This.AcceptedExtensions, value, () => This.AcceptedExtensions = value);
         }
 
         public string Format

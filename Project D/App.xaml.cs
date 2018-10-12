@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -30,6 +31,7 @@ namespace Project_D
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+            this.UnhandledException += this.OnUnhandledException;
         }
 
         /// <summary>
@@ -95,6 +97,19 @@ namespace Project_D
             var deferral = e.SuspendingOperation.GetDeferral();
             //TODO: Save application state and stop any background activity
             deferral.Complete();
+        }
+
+        private void OnUnhandledException(object sender, UnhandledExceptionEventArgs e)
+        {
+            e.Handled = true;
+#if !DEBUG
+   // log
+#else
+            if (Debugger.IsAttached)
+            {
+                Debugger.Break();
+            }
+#endif
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿using Microsoft.Toolkit.Uwp.UI.Extensions;
-using Project_D.ViewModels;
+﻿using Project_D.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -89,14 +88,14 @@ namespace Project_D.Views
                     StorageMain.RemoveStorages(StoragesGridView.SelectedItems);
                     break;
                 case nameof(RenameMenu):
-                    if (_RightTappedGridViewItem != null)
-                    {
-                        var show = _RightTappedGridViewItem.FindDescendantByName("ShowName");
-                        var edit = _RightTappedGridViewItem.FindDescendantByName("EditName");
-                        show.Visibility = Visibility.Collapsed;
-                        edit.Visibility = Visibility.Visible;
+                    //if (_RightTappedGridViewItem != null)
+                    //{
+                    //    var show = _RightTappedGridViewItem.FindDescendantByName("ShowName");
+                    //    var edit = _RightTappedGridViewItem.FindDescendantByName("EditName");
+                    //    show.Visibility = Visibility.Collapsed;
+                    //    edit.Visibility = Visibility.Visible;
 
-                    }
+                    //}
                     break;
                 default:
                     break;
@@ -119,15 +118,15 @@ namespace Project_D.Views
 
         private void EditName_LostFocus(object sender, RoutedEventArgs e)
         {
-            if (_RightTappedGridViewItem != null)
-            {
-                var show = _RightTappedGridViewItem.FindDescendantByName("ShowName");
-                var edit = _RightTappedGridViewItem.FindDescendantByName("EditName");
-                show.Visibility = Visibility.Visible;
-                edit.Visibility = Visibility.Collapsed;
+            //if (_RightTappedGridViewItem != null)
+            //{
+            //    var show = _RightTappedGridViewItem.FindDescendantByName("ShowName");
+            //    var edit = _RightTappedGridViewItem.FindDescendantByName("EditName");
+            //    show.Visibility = Visibility.Visible;
+            //    edit.Visibility = Visibility.Collapsed;
 
-                StorageMain.RenameStorage(edit.DataContext);
-            }
+            //    StorageMain.RenameStorage(edit.DataContext);
+            //}
 
         }
 
