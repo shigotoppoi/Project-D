@@ -51,9 +51,10 @@ namespace Project_D.ViewModels
                 string nextKey = formatKeys.ElementAtOrDefault(i + 1);
                 for (; filenameIndex < name.Length; filenameIndex++)
                 {
+                    var nameF = name[filenameIndex].ToString();
                     if (currentKey.Equals("skip", StringComparison.OrdinalIgnoreCase))
                     {
-                        if (name[filenameIndex].Equals(nextKey))
+                        if (nameF.Equals(nextKey))
                         {
                             break;
                         }
@@ -66,7 +67,8 @@ namespace Project_D.ViewModels
                     {
                         for (int j = filenameIndex; j < name.Length; j++)
                         {
-                            if (name[j].Equals(nextKey))
+                            var nameJ = name[j].ToString();
+                            if (nameJ.Equals(nextKey))
                             {
                                 result = name.Substring(filenameIndex, j - filenameIndex);
                                 break;
@@ -78,7 +80,7 @@ namespace Project_D.ViewModels
                         }
                         break;
                     }
-                    else if (currentKey.Equals(name[filenameIndex]))
+                    else if (currentKey.Equals(nameF))
                     {
                         filenameIndex = filenameIndex + 1;
                         break;

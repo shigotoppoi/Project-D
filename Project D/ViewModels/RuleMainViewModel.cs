@@ -65,7 +65,6 @@ namespace Project_D.ViewModels
 
         public void ConfirmEdit(string Text)
         {
-            SelectedRule.IsEditable = true;
             RaisePropertyChanged(nameof(SelectedRule));
         }
     }

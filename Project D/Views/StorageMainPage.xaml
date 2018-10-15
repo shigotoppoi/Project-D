@@ -14,8 +14,8 @@
             <StackPanel Orientation="Horizontal">
                 <Image Name="Picture" Source="{x:Bind Thumbnail}"></Image>
                 <StackPanel >
-                    <TextBlock Name="ShowName" Text="{x:Bind DisplayName, Mode=OneWay}" ></TextBlock>
-                    <TextBox Name="EditName" Text="{x:Bind DisplayName, Mode=TwoWay}" Visibility="Collapsed" LostFocus="EditName_LostFocus"></TextBox>
+                    <TextBlock Name="ShowName" Text="{x:Bind Name, Mode=OneWay}" ></TextBlock>
+                    <TextBox Name="EditName" Text="{x:Bind Name, Mode=TwoWay}" Visibility="Collapsed" LostFocus="EditName_LostFocus"></TextBox>
                     <TextBlock Text="{x:Bind Path}" ></TextBlock>
                 </StackPanel>
 
@@ -35,7 +35,6 @@
 
         <RelativePanel >
             <ComboBox Name="SortedKind" 
-                      RelativePanel.LeftOf="SortedDirection" RelativePanel.AlignVerticalCenterWith="SortedDirection"
                       PlaceholderText="XXXXXXXXXXXXX" Width="200"
                       SelectionChanged="SortedKind_SelectionChanged"
                       DropDownClosed="SortedKind_DropDownClosed"
@@ -74,7 +73,7 @@
 
         <RelativePanel Grid.Row="2" Style="{StaticResource AppBar}">
             <TextBlock Text="{x:Bind StorageMain.Storages.Count,Mode=OneWay}"></TextBlock>
-            <Button RelativePanel.AlignRightWithPanel="True"></Button>
+            <Button RelativePanel.AlignRightWithPanel="True" Name="Execute" Click="Execute_Click"></Button>
 
         </RelativePanel>
         

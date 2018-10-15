@@ -30,9 +30,7 @@ namespace Project_D
 
         public void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(ResultProgressPage));
+            Frame.Navigate(typeof(RuleMainPage));
         }
-
-
     }
 }

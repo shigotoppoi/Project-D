@@ -22,7 +22,7 @@ namespace Project_D.ViewModels
 
             Storages.Add(new StorageViewModel
             {
-                DisplayName = "HHHHHHHHH",
+                Name = "HHHHHHHHH",
                 Path = "FFFFFFFFFFFFFF"
             });
 
@@ -42,7 +42,7 @@ namespace Project_D.ViewModels
         {
             StorageViewModel storage = new StorageViewModel
             {
-                DisplayName = name,
+                Name = name,
                 Path = path,
                 Thumbnail = image,
                 Extension = extension,
@@ -84,7 +84,7 @@ namespace Project_D.ViewModels
             if (item is StorageViewModel storage)
             {
                 var file = await StorageFile.GetFileFromPathAsync(storage.Path);
-                await file.RenameAsync(storage.DisplayName);
+                await file.RenameAsync(storage.Name);
             }
         }
     }

@@ -13,8 +13,6 @@ namespace Project_D.ViewModels
     {
         public RuleViewModel(Rule rule = null) : base(rule) { }
 
-        public bool IsEditable { get; set; } = false;
-
         public string Name
         {
             get => This.Name;
@@ -24,21 +22,24 @@ namespace Project_D.ViewModels
         public string Destination
         {
             get => This.Destination;
-            //set => _Set(This.Destination, value, nameof(Destination));
             set=>SetProperty(This.Destination, value, () => This.Destination = value);
         }
 
-        public bool CreateIfNew
+        public bool CreateIfNone
         {
-            get => This.CreateIfNew;
-            //set => _Set(This.CreateIfNew, value, nameof(CreateIfNew));
-            set => SetProperty(This.CreateIfNew, value, () => This.CreateIfNew = value);
+            get => This.CreateIfNone;
+            set => SetProperty(This.CreateIfNone, value, () => This.CreateIfNone = value);
+        }
+
+        public bool ReplaceIfExist
+        {
+            get => This.ReplaceIfExist;
+            set => SetProperty(This.ReplaceIfExist, value, () => This.ReplaceIfExist = value);
         }
 
         public string Extensions
         {
             get => This.AcceptedExtensions;
-            //set => _Set(This.Extensions, value, nameof(Extensions));
             set => SetProperty(This.AcceptedExtensions, value, () => This.AcceptedExtensions = value);
         }
 

@@ -9,14 +9,14 @@ using Windows.UI.Xaml.Media.Imaging;
 
 namespace Project_D.ViewModels
 {
-    internal class StorageViewModel : NotificationBase<Storage>
+    public class StorageViewModel : NotificationBase<Storage>
     {
         public StorageViewModel(Storage file = null) : base(file)
         {
 
         }
 
-        public string DisplayName
+        public string Name
         {
             get => This.Name;
             set => SetProperty(This.Name, value, () => This.Name = value);
@@ -25,7 +25,11 @@ namespace Project_D.ViewModels
         public string Path
         {
             get => This.Path;
-            set => SetProperty(This.Path, value, () => This.Path = value);
+            set
+            {
+                if (Utility.CheckPath(value)) SetProperty(This.Path, value, () => This.Path = value);
+                else SetProperty(This.Path, string.Empty, () => This.Path = string.Empty);
+            }
         }
 
         public BitmapImage Thumbnail
@@ -35,11 +39,12 @@ namespace Project_D.ViewModels
         }
 
         public string Extension
+
         {
             get => This.Extension;
             set => SetProperty(This.Extension, value, () => This.Extension = value);
         }
 
-        public StorageFile File { get; set; }
+        public bool IsFile => Extension is null ? false : true;
     }
 }

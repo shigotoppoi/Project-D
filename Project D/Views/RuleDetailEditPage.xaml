@@ -1,5 +1,5 @@
 ﻿<Page
-    x:Class="Project_D.Views.EditRuleDetailPage"
+    x:Class="Project_D.Views.RuleDetailEditPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Project_D.Views"
@@ -37,7 +37,7 @@
                             Text="{x:Bind Rule.Format, Mode=OneWay}"></TextBox>
             <TextBlock Grid.Column="0" Grid.Row="3"></TextBlock>
             <CheckBox Grid.Column="1" Grid.Row="3" Name="CreateIfNewCheckBox" 
-                            IsChecked="{x:Bind Rule.CreateIfNew, Mode=OneWay}"></CheckBox>
+                            IsChecked="{x:Bind Rule.CreateIfNone, Mode=OneWay}"></CheckBox>
             <TextBlock Grid.Column="0" Grid.Row="4"></TextBlock>
             <TextBox Grid.Column="1" Grid.Row="4" Name="ExtensionsTextBox"
                             Text="{x:Bind Rule.Extensions, Mode=OneWay}"></TextBox>

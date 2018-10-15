@@ -47,7 +47,7 @@ namespace Project_D.Views
 
         private void Rules_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            RuleDetailFrame.Navigate(typeof(DisplayRuleDetailPage), RuleMain.SelectedRule);
+            RuleDetailFrame.Navigate(typeof(RuleDetailPage), RuleMain.SelectedRule);
         }
 
         private void Rules_ItemClick(object sender, ItemClickEventArgs e)
@@ -68,12 +68,12 @@ namespace Project_D.Views
 
         private void EditRule_Click(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(EditRuleDetailPage), RuleMain.SelectedRule);
+            Frame.Navigate(typeof(RuleDetailEditPage), RuleMain.SelectedRule);
         }
 
         private void AddRule_Click(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(EditRuleDetailPage));
+            Frame.Navigate(typeof(RuleDetailEditPage));
         }
     }
 }

@@ -1,5 +1,5 @@
 ﻿<Page
-    x:Class="Project_D.Views.DisplayRuleDetailPage"
+    x:Class="Project_D.Views.RuleDetailPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Project_D.Views"
@@ -45,7 +45,7 @@
             <TextBlock Grid.Column="1" Grid.Row="2" Name="FormatTextBox" Text="{x:Bind Rule.Format, Mode=OneWay}" Style="{StaticResource SectionText}"></TextBlock>
             
             <TextBlock Grid.Column="0" Grid.Row="3" Text="CreateIfNew" Style="{StaticResource SectionText}"></TextBlock>
-            <TextBlock Grid.Column="1" Grid.Row="3" Name="CreateIfNewCheckBox" Text="{x:Bind Rule.CreateIfNew, Mode=OneWay}" Style="{StaticResource SectionText}"></TextBlock>
+            <TextBlock Grid.Column="1" Grid.Row="3" Name="CreateIfNewCheckBox" Text="{x:Bind Rule.CreateIfNone, Mode=OneWay}" Style="{StaticResource SectionText}"></TextBlock>
             
             <TextBlock Grid.Column="0" Grid.Row="4" Text="Extensions" Style="{StaticResource SectionText}"></TextBlock>
             <StackPanel Grid.Column="1" Grid.Row="4">

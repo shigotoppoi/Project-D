@@ -49,7 +49,6 @@ namespace Project_D.Views
                     {
                         var bitmapImage = new BitmapImage();
                         bitmapImage.SetSource(await storageFile.GetThumbnailAsync(Windows.Storage.FileProperties.ThumbnailMode.SingleItem));
-                        //await storageFile.RenameAsync("sssss");
                         StorageMain.AddStorage(storageFile.DisplayName, storageFile.Path, bitmapImage, storageFile.FileType);
                     }
                     else if (item is StorageFolder storageFolder)
@@ -133,6 +132,12 @@ namespace Project_D.Views
         private void Back_Click(object sender, RoutedEventArgs e)
         {
             if (Frame.CanGoBack) Frame.GoBack();
+        }
+
+        private void Execute_Click(object sender, RoutedEventArgs e)
+        {
+            (Application.Current as App).WorkContent.Storages = StorageMain.Storages;
+            Frame.Navigate(typeof(ProgressPage));
         }
     }
 }

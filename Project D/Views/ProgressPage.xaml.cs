@@ -21,27 +21,23 @@ namespace Project_D.Views
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class ResultProgressPage : Page
+    public sealed partial class ProgressPage : Page
     {
-        public ResultProgressPage()
+        public ProgressPage()
         {
             this.InitializeComponent();
+            var work = (Application.Current as App).WorkContent;
+            _progress = new StorageDispatcher(work.Storages, work.Rule);
+            DataContext = _progress;
         }
 
         IProgressViewModel _progress;
-
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            base.OnNavigatedTo(e);
-
-            _progress = e.Parameter as IProgressViewModel;
-
-            CircularProgress.va.va
-        }
 
         private void CircularProgress_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
         {
 
         }
+
+
     }
 }

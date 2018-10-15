@@ -7,7 +7,7 @@ using Windows.UI.Xaml.Media.Imaging;
 
 namespace Project_D.Datas
 {
-    class Storage
+    public class Storage
     {
         public string Path { get; set; }
         public string Name { get; set; }

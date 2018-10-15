@@ -1,5 +1,5 @@
 ﻿<Page
-    x:Class="Project_D.Views.ResultProgressPage"
+    x:Class="Project_D.Views.ProgressPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Project_D.Views"
@@ -7,6 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     mc:Ignorable="d"
+    xmlns:viewModels="using:Project_D.ViewModels"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <StackPanel VerticalAlignment="Center">
@@ -14,16 +15,16 @@
             <controls:RadialProgressBar
                 x:Name="CircularProgress"
                 Grid.Column="1"
-                Value="74"
+                Value="{x:Bind _progress.Value ,Mode=OneWay}"
                 Foreground="Green"
                 Thickness="4"
-                Minimum="0"
-                Maximum="100"
+                Minimum="{x:Bind _progress.Minimum}"
+                Maximum="{x:Bind _progress.Maximum}"
                 Width="100"
                 Height="100"
                 Outline="LightSkyBlue"
                 ValueChanged="CircularProgress_ValueChanged"/>
-            <TextBlock Name="ProgressValue"></TextBlock>
+            <TextBlock Name="TextProgress" Text="{x:Bind _progress.ToString(),Mode=OneWay}"></TextBlock>
             <Button Name="Cancel"></Button>
         </StackPanel>
     </StackPanel>

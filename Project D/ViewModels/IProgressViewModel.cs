@@ -6,7 +6,13 @@ using System.Threading.Tasks;
 
 namespace Project_D.ViewModels
 {
-    interface IProgressViewModel
+    public interface IProgressViewModel
     {
+        double Value { get; }
+        double Maximum { get; }
+        double Minimum { get; }
+
+        Task RunAsync();
+        string ToString();
     }
 }

@@ -21,9 +21,9 @@ namespace Project_D.Views
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class EditRuleDetailPage : Page
+    public sealed partial class RuleDetailPage : Page
     {
-        public EditRuleDetailPage()
+        public RuleDetailPage()
         {
             this.InitializeComponent();
         }
@@ -34,27 +34,14 @@ namespace Project_D.Views
         {
             Rule = e.Parameter as RuleViewModel;
 
-            if (Rule is null)
-            {
-                Rule = new RuleViewModel();
-            }
-
             base.OnNavigatedTo(e);
         }
 
-        private void CancelEdit_Click(object sender, RoutedEventArgs e)
+        private void SelectButton_Click(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(RuleMainPage), Rule);
-        }
-
-        private void ConfirmEdit_Click(object sender, RoutedEventArgs e)
-        {
-            Rule.Name = RuleNameTextBox.Text;
-            Rule.Destination = DestinationTextBox.Text;
-            Rule.Format = FormatTextBox.Text;
-            Rule.CreateIfNew = CreateIfNewCheckBox.IsChecked ?? false;
-            Rule.Extensions = ExtensionsTextBox.Text;
-            Frame.Navigate(typeof(RuleMainPage), Rule);
+            (Application.Current as App).WorkContent.Rule = Rule;
+            var frame = (Window.Current.Content as Frame);
+            frame.Navigate(typeof(StorageMainPage));
         }
     }
 }

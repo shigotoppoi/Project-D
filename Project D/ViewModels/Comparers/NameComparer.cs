@@ -13,7 +13,7 @@ namespace Project_D.ViewModels
 
         public override int Compare(StorageViewModel x, StorageViewModel y)
         {
-            return Flow(CaseComparer.Compare(x.DisplayName, y.DisplayName));
+            return Flow(CaseComparer.Compare(x.Name, y.Name));
         }
     }
 }

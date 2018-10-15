@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using Project_D.ViewModels;
 
 namespace Test
 {
@@ -8,19 +10,38 @@ namespace Test
     {
         private static void Main(string[] args)
         {
-            //string s = @"\(s\)\(s\) \[n \(s\)\]s";
-            string s = @"[skip] name [skip]s";
 
-            var r = new RuleParser().ParseFormat(s);
-            r.ToString();
+        }
+    }
 
-            //string filename = @"(765)(test) [HERE (qq)] we are the world";
-            string filename = @"[fin] HERE [0710][tv][12]";
+    class MyTest
+    {
+        RuleViewModel _getRule() => new RuleViewModel
+        {
+            CreateIfNone = true,
+            Destination = "SSS",
+            ReplaceIfExist = true,
+            Extensions = "zip;jpg;png",
+            Format = "[skip] name [skip]",
+            Name = "MYTEST"
+        };
+
+        IEnumerable<StorageViewModel> _getStorages()
+        {
+            return new List<StorageViewModel>
+            {
+                new StorageViewModel{Extension="jpg",Name="AAA",Path="aaa"},
+                new StorageViewModel{Extension="jpg",Name="AAA",Path="aaa"},
+                new StorageViewModel{Extension="jpg",Name="AAA",Path="aaa"},
+                new StorageViewModel{Extension="jpg",Name="AAA",Path="aaa"},
+            };
         }
 
 
-
-
+        public async Task TestStorageDispatcher()
+        {
+            await new StorageDispatcher(_getStorages(), _getRule()).RunAsync();
+        }
     }
 
     internal class RuleParser

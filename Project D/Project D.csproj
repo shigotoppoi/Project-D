@@ -139,7 +139,7 @@
     <Compile Include="ViewModels\Comparers\ExtensionComparer.cs" />
     <Compile Include="ViewModels\Comparers\NameComparer.cs" />
     <Compile Include="ViewModels\IProgressViewModel.cs" />
-    <Compile Include="ViewModels\FileDispatcher.cs" />
+    <Compile Include="ViewModels\StorageDispatcher.cs" />
     <Compile Include="ViewModels\ResultViewModel.cs" />
     <Compile Include="ViewModels\RuleParser.cs" />
     <Compile Include="ViewModels\SortedKindViewModel.cs" />
@@ -149,11 +149,12 @@
     <Compile Include="ViewModels\NotificationBase.cs" />
     <Compile Include="ViewModels\RuleViewModel.cs" />
     <Compile Include="ViewModels\RuleMainViewModel.cs" />
-    <Compile Include="Views\DisplayRuleDetailPage.xaml.cs">
-      <DependentUpon>DisplayRuleDetailPage.xaml</DependentUpon>
+    <Compile Include="ViewModels\Utility.cs" />
+    <Compile Include="Views\RuleDetailPage.xaml.cs">
+      <DependentUpon>RuleDetailPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\EditRuleDetailPage.xaml.cs">
-      <DependentUpon>EditRuleDetailPage.xaml</DependentUpon>
+    <Compile Include="Views\RuleDetailEditPage.xaml.cs">
+      <DependentUpon>RuleDetailEditPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ResultMainPage.xaml.cs">
       <DependentUpon>ResultMainPage.xaml</DependentUpon>
@@ -167,6 +168,7 @@
     <Compile Include="Views\RuleMainPage.xaml.cs">
       <DependentUpon>RuleMainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WorkContent.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -193,11 +195,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\DisplayRuleDetailPage.xaml">
+    <Page Include="Views\RuleDetailPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\EditRuleDetailPage.xaml">
+    <Page Include="Views\RuleDetailEditPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
