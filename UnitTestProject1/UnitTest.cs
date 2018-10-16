@@ -24,7 +24,7 @@ namespace UnitTestProject1
         {
             return new List<StorageViewModel>
             {
-                new StorageViewModel{Extension="jpg",Name="[00] AAA [88]",Path="aaa"},
+                new StorageViewModel{Extension="jpg",Name="[00] AAA [88]",Path=@"C:\Users\User\Desktop\des"},
                 new StorageViewModel{Extension="jpg",Name="AAA",Path="aaa"},
             };
         }

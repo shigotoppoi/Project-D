@@ -39,8 +39,17 @@ namespace Project_D.ViewModels
 
         public string Extensions
         {
-            get => This.AcceptedExtensions;
-            set => SetProperty(This.AcceptedExtensions, value, () => This.AcceptedExtensions = value);
+            get
+            {
+                StringBuilder sb = new StringBuilder();
+                This.Extensions.ForEach(s => sb.Append(s).Append(';'));
+                return sb.ToString();
+            }
+            set
+            {
+                var v = value.Split(';').ToList();
+                SetProperty(This.Extensions, v, () => This.Extensions = v);
+            }
         }
 
         public string Format

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.Storage;
 using Windows.UI.Xaml.Media.Imaging;
 
 namespace Project_D.Datas
@@ -13,7 +14,6 @@ namespace Project_D.Datas
         public string Name { get; set; }
         public BitmapImage Thumbnail { get; set; }
         public string Extension { get; set; }
-        public string FullName => Extension is null ? Name : $"{Name}.{Extension}";
-        public bool IsFile => Extension is null ? false : true;
+        public bool isFile { get; set; }
     }
 }

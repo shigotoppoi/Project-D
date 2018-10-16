@@ -43,6 +43,7 @@ namespace Project_D.ViewModels
                     continue;
                 }
 
+                
                 IStorageItem item;
                 if (storage.IsFile)
                 {

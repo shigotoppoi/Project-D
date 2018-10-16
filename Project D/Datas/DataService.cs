@@ -11,11 +11,11 @@ namespace Project_D.Datas
 
         public IEnumerable<Rule> GetRules()
         {
-            return  new List<Rule>
+            return new List<Rule>
             {
-                new Rule{ Name= "rule 1",Destination="C:",AcceptedExtensions= "*.zip;*.7z" ,Format="<[><]>" },
-                new Rule{ Name= "rule 2",Destination="D:",AcceptedExtensions="*.zip;*.7z" ,Format="<[><]>" },
-                new Rule{ Name= "rule 3",Destination="E:",AcceptedExtensions="*.zip;*.7z" ,Format="<[><]>" },
+                new Rule{ Name= "rule 1",Destination="C:",Extensions= new List<string>{"zip","jpg" } ,Format="<[><]>" },
+                //new Rule{ Name= "rule 2",Destination="D:",Extensions= new List<string>{"zip","jpg" },Format="<[><]>" },
+                //new Rule{ Name= "rule 3",Destination="E:",Extensions= new List<string>{"zip","jpg" } ,Format="<[><]>" },
             }; ;
         }
 

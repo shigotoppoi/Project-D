@@ -25,11 +25,11 @@ namespace Project_D.ViewModels
         public string Path
         {
             get => This.Path;
-            set
-            {
-                if (Utility.CheckPath(value)) SetProperty(This.Path, value, () => This.Path = value);
-                else SetProperty(This.Path, string.Empty, () => This.Path = string.Empty);
-            }
+            //set
+            //{
+            //    if (Utility.CheckPath(value)) SetProperty(This.Path, value, () => This.Path = value);
+            //    else SetProperty(This.Path, string.Empty, () => This.Path = string.Empty);
+            //}
         }
 
         public BitmapImage Thumbnail
@@ -39,12 +39,15 @@ namespace Project_D.ViewModels
         }
 
         public string Extension
-
         {
             get => This.Extension;
             set => SetProperty(This.Extension, value, () => This.Extension = value);
         }
 
-        public bool IsFile => Extension is null ? false : true;
+        public bool IsFile
+        {
+            get => This.isFile;
+            set => SetProperty(This.isFile, value, () => This.isFile = value);
+        }
     }
 }

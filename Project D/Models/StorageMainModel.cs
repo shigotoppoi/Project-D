@@ -11,30 +11,30 @@ namespace Project_D.Models
     {
         public StorageMainModel()
         {
-            _files = new List<Storage>();
+            _storages = new List<Storage>();
         }
 
-        private List<Storage> _files;
+        private List<Storage> _storages;
 
-        public void AddStorage(Storage file)
+        public void AddStorage(Storage storage)
         {
-            if (!_files.Contains(file))
+            if (!_storages.Contains(storage))
             {
-                _files.Add(file);
+                _storages.Add(storage);
             }
         }
 
         public void RemoveStorage(Storage storage)
         {
-            if(!_files.Contains(storage))
+            if(!_storages.Contains(storage))
             {
-                _files.Remove(storage);
+                _storages.Remove(storage);
             }
         }
 
         public List<Storage> GetStorages()
         {
-            return _files;
+            return _storages;
         }
     }
 

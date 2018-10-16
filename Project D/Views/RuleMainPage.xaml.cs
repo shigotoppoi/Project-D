@@ -31,40 +31,20 @@ namespace Project_D.Views
 
         public RuleMainViewModel RuleMain { get; set; }
 
-
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            RuleViewModel rule = e.Parameter as RuleViewModel;
-
-            if (rule != null)
+            var rule = e.Parameter as RuleViewModel;
+            if(rule !=null)
             {
                 RuleMain.AddRule(rule);
             }
-
             base.OnNavigatedTo(e);
         }
-
 
         private void Rules_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             RuleDetailFrame.Navigate(typeof(RuleDetailPage), RuleMain.SelectedRule);
         }
-
-        private void Rules_ItemClick(object sender, ItemClickEventArgs e)
-        {
-
-        }
-
-        private void ConfirmEdit_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void CancelEdit_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
 
         private void EditRule_Click(object sender, RoutedEventArgs e)
         {
@@ -73,6 +53,7 @@ namespace Project_D.Views
 
         private void AddRule_Click(object sender, RoutedEventArgs e)
         {
+            RuleMain.SelectedIndex = -1;
             Frame.Navigate(typeof(RuleDetailEditPage));
         }
     }

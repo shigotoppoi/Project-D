@@ -11,8 +11,8 @@ namespace Project_D.Datas
         public string Name { get; set; }
         public string Destination { get; set; }
         public bool CreateIfNone { get; set; }
-        public string AcceptedExtensions { get; set; }
-        public string Format { get; set; }
         public bool ReplaceIfExist { get; set; }
+        public List<string> Extensions { get; set; }
+        public string Format { get; set; }
     }
 }

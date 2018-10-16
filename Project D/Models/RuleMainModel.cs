@@ -33,7 +33,7 @@ namespace Project_D.Models
 
         public void RemoveRule(Rule rule)
         {
-            if (!_rules.Contains(rule))
+            if (_rules.Contains(rule))
             {
                 _rules.Remove(rule);
             }

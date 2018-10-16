@@ -28,13 +28,12 @@ namespace Project_D.Views
             this.InitializeComponent();
         }
 
-        private RuleViewModel Rule { get; set; }
+        public RuleViewModel Rule { get; set; }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            Rule = e.Parameter as RuleViewModel;
-
-            if (Rule is null)
+            Rule = e.Parameter as RuleViewModel; 
+            if(Rule is null)
             {
                 Rule = new RuleViewModel();
             }
@@ -44,16 +43,31 @@ namespace Project_D.Views
 
         private void CancelEdit_Click(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(RuleMainPage), Rule);
+            Frame.Navigate(typeof(RuleMainPage));
         }
 
         private void ConfirmEdit_Click(object sender, RoutedEventArgs e)
         {
-            Rule.Name = RuleNameTextBox.Text;
-            Rule.Destination = DestinationTextBox.Text;
-            Rule.Format = FormatTextBox.Text;
-            Rule.CreateIfNone = CreateIfNewCheckBox.IsChecked ?? false;
-            Rule.Extensions = ExtensionsTextBox.Text;
+            RuleNameTextBox.GetBindingExpression(TextBlock.TextProperty).UpdateSource();
+            //if (RuleMain.SelectedRule == null)
+            //{
+            //    RuleMain.AddRule(RuleNameTextBox.Text,
+            //        DestinationTextBox.Text,
+            //        CreateIfNewCheckBox.IsChecked ?? false,
+            //        ReplaceIfExistCheckBox.IsChecked ?? false,
+            //        ExtensionsTextBox.Text,
+            //        FormatTextBox.Text);
+            //}
+            //else
+            //{
+            //    RuleMain.EditRule(RuleNameTextBox.Text,
+            //        DestinationTextBox.Text,
+            //        CreateIfNewCheckBox.IsChecked ?? false,
+            //        ReplaceIfExistCheckBox.IsChecked ?? false,
+            //        ExtensionsTextBox.Text,
+            //        FormatTextBox.Text);
+            //}
+
             Frame.Navigate(typeof(RuleMainPage), Rule);
         }
     }

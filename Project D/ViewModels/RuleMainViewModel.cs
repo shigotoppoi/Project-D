@@ -20,11 +20,15 @@ namespace Project_D.ViewModels
                 RuleViewModel rule = new RuleViewModel(o);
                 Rules.Add(rule);
             });
+
+            RemoveRuleCommand = new RelayParameterCommand(RemoveRule);
+            AddRuleCommand = new RelayParameterCommand(AddRule);
         }
 
         private RuleMainModel _RuleMain;
 
-
+        public RelayParameterCommand RemoveRuleCommand { get; }
+        public RelayParameterCommand AddRuleCommand { get; }
         public ObservableCollection<RuleViewModel> Rules { get; } = new ObservableCollection<RuleViewModel>();
 
         public RuleViewModel SelectedRule
@@ -32,7 +36,7 @@ namespace Project_D.ViewModels
             get { return (_selectedIndex >= 0) ? Rules[_selectedIndex] : null; }
         }
 
-        private int _selectedIndex = 0;
+        private int _selectedIndex = -1;
         public int SelectedIndex
         {
             get => _selectedIndex;
@@ -45,27 +49,37 @@ namespace Project_D.ViewModels
             }
         }
 
-        public void AddRule(RuleViewModel rule)
+        public void RemoveRule(object item)
         {
-            _RuleMain.AddRule(rule);
-            Rules.Add(rule);
-            SelectedIndex = Rules.IndexOf(rule);
-        }
-
-        public void RemoveRule()
-        {
-            if (SelectedRule != null)
+            if (item is RuleViewModel rule)
             {
-                var i = Rules.IndexOf(SelectedRule);
-                _RuleMain.RemoveRule(SelectedRule);
-                Rules.Remove(SelectedRule);
-                SelectedIndex = i.Equals(0) ? ++i : --i;
+                SelectedIndex = Rules.IndexOf(rule);
+                _RuleMain.RemoveRule(rule);
+                Rules.Remove(rule);
             }
         }
 
-        public void ConfirmEdit(string Text)
+        public void EditRule(string name, string destination, bool creatIfNone, bool replaceIfExist, string extensions, string format)
         {
-            RaisePropertyChanged(nameof(SelectedRule));
+            SelectedRule.Name = name;
+            SelectedRule.Destination = destination;
+            SelectedRule.CreateIfNone = creatIfNone;
+            SelectedRule.ReplaceIfExist = replaceIfExist;
+            SelectedRule.Extensions = extensions;
+            SelectedRule.Format = format;
+        }
+
+        public void AddRule(object item)
+        {
+            if(item is RuleViewModel rule)
+            {
+                if(!Rules.Contains(rule))
+                {
+                    _RuleMain.AddRule(rule);
+                    Rules.Add(rule);
+                    SelectedIndex = Rules.IndexOf(rule);
+                }
+            }
         }
     }
 }

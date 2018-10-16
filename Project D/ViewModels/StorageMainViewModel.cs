@@ -23,7 +23,7 @@ namespace Project_D.ViewModels
             Storages.Add(new StorageViewModel
             {
                 Name = "HHHHHHHHH",
-                Path = "FFFFFFFFFFFFFF"
+                //Path = "FFFFFFFFFFFFFF"
             });
 
             foreach (var s in _sortedKindModel.GetSortedTypes())
@@ -38,17 +38,23 @@ namespace Project_D.ViewModels
         public ObservableCollection<StorageViewModel> Storages => _Storages;
         public ObservableCollection<SortedKindViewModel> SortedKinds = new ObservableCollection<SortedKindViewModel>();
 
-        public void AddStorage(string name, string path, BitmapImage image, string extension)
+        public void AddStorage(string name, string path, BitmapImage image, string extension, bool isFile)
         {
             StorageViewModel storage = new StorageViewModel
             {
                 Name = name,
-                Path = path,
+                //Path = path,
                 Thumbnail = image,
                 Extension = extension,
+                IsFile = isFile
             };
             _storageMainModel.AddStorage(storage);
             _Storages.Add(storage);
+        }
+
+        public void AddStorage(IStorageItem storage)
+        {
+
         }
 
         public void RemoveStorages(IEnumerable<object> items)

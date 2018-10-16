@@ -1,9 +1,9 @@
-﻿using System;
+﻿using Project_D.Datas;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Project_D.Datas;
 
 namespace Project_D.ViewModels
 {
@@ -12,7 +12,7 @@ namespace Project_D.ViewModels
 
         private readonly string SKIP = "skip";
         private readonly string NAME = "name";
-        private string[] codes = new string[] { "skip", "name" };
+        private string[] codes => new string[] { SKIP, NAME };
 
         public List<string> ParseFormat(string format)
         {
@@ -44,50 +44,43 @@ namespace Project_D.ViewModels
         public string ParseName(List<string> formatKeys, string name)
         {
             string result = null;
-            int filenameIndex = 0;
+            int nameIndex = 0;
             for (int i = 0; i < formatKeys.Count; i++)
             {
-                string currentKey = formatKeys[i];
+                string currentKey = formatKeys[i].ToLower();
                 string nextKey = formatKeys.ElementAtOrDefault(i + 1);
-                for (; filenameIndex < name.Length; filenameIndex++)
+                for (; nameIndex < name.Length; nameIndex++)
                 {
-                    var nameF = name[filenameIndex].ToString();
-                    if (currentKey.Equals("skip", StringComparison.OrdinalIgnoreCase))
+                    var fStr = name[nameIndex].ToString();
+                    if (currentKey.Equals(SKIP))
                     {
-                        if (nameF.Equals(nextKey))
+                        if (fStr.Equals(nextKey))
                         {
                             break;
                         }
-                        else
-                        {
-                            continue;
-                        }
+                        continue;
                     }
-                    else if (currentKey.Equals("name", StringComparison.OrdinalIgnoreCase))
+                    else if (currentKey.Equals(NAME))
                     {
-                        for (int j = filenameIndex; j < name.Length; j++)
+                        for (int j = nameIndex; j < name.Length; j++)
                         {
-                            var nameJ = name[j].ToString();
-                            if (nameJ.Equals(nextKey))
+                            var jStr = name[j].ToString();
+                            if (jStr.Equals(nextKey))
                             {
-                                result = name.Substring(filenameIndex, j - filenameIndex);
+                                result = name.Substring(nameIndex, j - nameIndex);
                                 break;
-                            }
-                            else
-                            {
-                                continue;
                             }
                         }
                         break;
                     }
-                    else if (currentKey.Equals(nameF))
+                    else if (currentKey.Equals(fStr))
                     {
-                        filenameIndex = filenameIndex + 1;
+                        nameIndex = nameIndex + 1;
                         break;
                     }
                     else
                     {
-                        //throw exception
+                        //todo throw exception
                     }
                 }
 

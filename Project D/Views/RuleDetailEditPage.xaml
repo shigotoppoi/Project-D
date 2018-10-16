@@ -8,7 +8,7 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
+    <Grid DataContext="{Binding Source=Rule}">
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
@@ -24,23 +24,27 @@
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
 
             <TextBlock Grid.Column="0" Grid.Row="0"></TextBlock>
             <TextBox Grid.Column="1" Grid.Row="0" Name="RuleNameTextBox"
-                            Text="{x:Bind Rule.Name, Mode=OneWay}"></TextBox>
+                            Text="{Binding Name, Mode=TwoWay}"></TextBox>
             <TextBlock Grid.Column="0" Grid.Row="1"></TextBlock>
             <TextBox Grid.Column="1" Grid.Row="1" Name="DestinationTextBox"
-                            Text="{x:Bind Rule.Destination, Mode=OneWay}"></TextBox>
+                            Text="{Binding Rule.Destination, Mode=TwoWay,UpdateSourceTrigger=Explicit}"></TextBox>
             <TextBlock Grid.Column="0" Grid.Row="2"></TextBlock>
             <TextBox Grid.Column="1" Grid.Row="2" Name="FormatTextBox"
-                            Text="{x:Bind Rule.Format, Mode=OneWay}"></TextBox>
+                            Text="{Binding Rule.Format, Mode=TwoWay,UpdateSourceTrigger=Explicit}"></TextBox>
             <TextBlock Grid.Column="0" Grid.Row="3"></TextBlock>
             <CheckBox Grid.Column="1" Grid.Row="3" Name="CreateIfNewCheckBox" 
-                            IsChecked="{x:Bind Rule.CreateIfNone, Mode=OneWay}"></CheckBox>
+                            IsChecked="{Binding Rule.CreateIfNone, Mode=TwoWay,UpdateSourceTrigger=Explicit}"></CheckBox>
             <TextBlock Grid.Column="0" Grid.Row="4"></TextBlock>
             <TextBox Grid.Column="1" Grid.Row="4" Name="ExtensionsTextBox"
-                            Text="{x:Bind Rule.Extensions, Mode=OneWay}"></TextBox>
+                            Text="{Binding Rule.Extensions, Mode=TwoWay,UpdateSourceTrigger=Explicit}"></TextBox>
+            <TextBlock Grid.Column="0" Grid.Row="5"></TextBlock>
+            <CheckBox Grid.Column="1" Grid.Row="5" Name="ReplaceIfExistCheckBox"
+                            IsChecked="{Binding Rule.ReplaceIfExist, Mode=TwoWay,UpdateSourceTrigger=Explicit}"></CheckBox>
         </Grid>
         <RelativePanel Grid.Row="1">
             <Button RelativePanel.LeftOf="ConfirmEdit" Name="CancelEdit" Content="Cancel" Click="CancelEdit_Click"></Button>

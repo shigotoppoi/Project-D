@@ -49,13 +49,13 @@ namespace Project_D.Views
                     {
                         var bitmapImage = new BitmapImage();
                         bitmapImage.SetSource(await storageFile.GetThumbnailAsync(Windows.Storage.FileProperties.ThumbnailMode.SingleItem));
-                        StorageMain.AddStorage(storageFile.DisplayName, storageFile.Path, bitmapImage, storageFile.FileType);
+                        StorageMain.AddStorage(storageFile.DisplayName, storageFile.Path, bitmapImage, storageFile.FileType, true);
                     }
                     else if (item is StorageFolder storageFolder)
                     {
                         var bitmapImage = new BitmapImage();
                         bitmapImage.SetSource(await storageFolder.GetThumbnailAsync(Windows.Storage.FileProperties.ThumbnailMode.SingleItem));
-                        StorageMain.AddStorage(storageFolder.DisplayName, storageFolder.Path, bitmapImage, null);
+                        StorageMain.AddStorage(storageFolder.DisplayName, storageFolder.Path, bitmapImage, null, false);
                     }
                 }
             }

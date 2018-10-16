@@ -32,8 +32,7 @@
                       Grid.Row="1"
                       ItemsSource="{x:Bind RuleMain.Rules}" 
                       SelectedIndex="{x:Bind RuleMain.SelectedIndex, Mode=TwoWay}"
-                      SelectionChanged="Rules_SelectionChanged"
-                      ItemClick="Rules_ItemClick">
+                      SelectionChanged="Rules_SelectionChanged">
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="viewModels:RuleViewModel">
                         <TextBlock Text="{x:Bind Name}" Style="{StaticResource SectionText}" ></TextBlock>
@@ -50,7 +49,7 @@
 
             <CommandBar Grid.Row="0" RelativePanel.AlignRightWithPanel="True" Background="Transparent">
                 <AppBarButton Name="EditRuleButton" Icon="Edit" Click="EditRule_Click" Content="Edit"></AppBarButton>
-                <AppBarButton Name="RemoveRuleButton" Icon="Remote" Click="{x:Bind RuleMain.RemoveRule}" Content="Remove"></AppBarButton>
+                <AppBarButton Name="RemoveRuleButton" Icon="Remove" Command="{x:Bind RuleMain.RemoveRuleCommand}" CommandParameter="{x:Bind RuleMain.SelectedRule,Mode=OneWay}" Content="Remove"></AppBarButton>
             </CommandBar>
             <Frame Grid.Row="1" Name="RuleDetailFrame" Margin="{StaticResource ContentMargin}"></Frame>
         </Grid>
