@@ -11,6 +11,8 @@ namespace Project_D.ViewModels
 {
     public class RuleViewModel : NotificationBase<Rule>
     {
+        public RuleViewModel() { }
+
         public RuleViewModel(Rule rule = null) : base(rule) { }
 
         public string Name

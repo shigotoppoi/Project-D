@@ -43,16 +43,14 @@ namespace Project_D.ViewModels
                     continue;
                 }
 
-                
                 IStorageItem item;
-                if (storage.IsFile)
+                if (storage.StorageType == StorageItemTypes.File)
                 {
                     item = await StorageFile.GetFileFromPathAsync(storage.Path);
                 }
                 else
                 {
                     item = await StorageFolder.GetFolderFromPathAsync(storage.Path);
-
                 }
                 await _moveFiles(item, desFolder, _rule.ReplaceIfExist, _rule.CreateIfNone);
                 Value++;

@@ -13,7 +13,7 @@ namespace Project_D.ViewModels
     {
         public RuleMainViewModel()
         {
-            _RuleMain = new RuleMainModel();
+            _RuleMain = new RuleModel();
 
             _RuleMain.GetRules().ForEach(o =>
             {
@@ -25,7 +25,7 @@ namespace Project_D.ViewModels
             AddRuleCommand = new RelayParameterCommand(AddRule);
         }
 
-        private RuleMainModel _RuleMain;
+        private RuleModel _RuleMain;
 
         public RelayParameterCommand RemoveRuleCommand { get; }
         public RelayParameterCommand AddRuleCommand { get; }

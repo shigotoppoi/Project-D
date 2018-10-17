@@ -21,12 +21,13 @@
 
             </StackPanel>
         </DataTemplate>
+        <viewmodels:DirectionConverter x:Key="DirectionConverter"></viewmodels:DirectionConverter>
     </Page.Resources>
 
-    <Grid Name="FileMainGrid" 
+    <Grid Name="TopGrid" 
           AllowDrop="True"
-          Drop="FileMainGrid_Drop"
-          DragOver="StorageGrid_DragOver"    >
+          Drop="TopGrid_Drop"
+          DragOver="TopGrid_DragOver"    >
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
@@ -34,21 +35,14 @@
         </Grid.RowDefinitions>
 
         <RelativePanel >
-            <ComboBox Name="SortedKind" 
-                      PlaceholderText="XXXXXXXXXXXXX" Width="200"
-                      SelectionChanged="SortedKind_SelectionChanged"
-                      DropDownClosed="SortedKind_DropDownClosed"
-                      ItemsSource="{x:Bind StorageMain.SortedKinds}"
-                      >
-            </ComboBox>
             <CommandBar OverflowButtonVisibility="Collapsed" >
                 <AppBarButton Icon="Back" Click="Back_Click"></AppBarButton>
             </CommandBar>
             <CommandBar RelativePanel.LeftOf="Filter" OverflowButtonVisibility="Collapsed">
                 <AppBarButton Icon="Sort">
                     <AppBarButton.Flyout>
-                        <MenuFlyout>
-                            
+                        <MenuFlyout x:Name="SortMenu">
+                            <MenuFlyoutItem Text="{x:Bind StorageMain.Sorts}"></MenuFlyoutItem>
                         </MenuFlyout>
                     </AppBarButton.Flyout>
                 </AppBarButton>
@@ -58,15 +52,17 @@
                             Width="200" Margin="0 0 10 0"
                             QueryIcon="Find"></AutoSuggestBox>
         </RelativePanel>
+        
+        
 
-        <GridView Grid.Row="1" Name="StoragesGridView" ItemsSource="{x:Bind StorageMain.Storages, Mode=OneWay}" ItemTemplate="{StaticResource StorageTemplate}"
+        <GridView Grid.Row="1" Name="StorageView" ItemsSource="{x:Bind StorageMain.Storages, Mode=OneWay}" ItemTemplate="{StaticResource StorageTemplate}"
                   SelectionMode="Extended"
-                  RightTapped="StoragesGridView_RightTapped"
-                  ItemClick="StoragesGridView_ItemClick">
+                  RightTapped="StorageView_RightTapped"
+                  ItemClick="StorageView_ItemClick">
             <GridView.ContextFlyout>
                 <MenuFlyout>
-                    <MenuFlyoutItem Name="DeleteMenu" Text="Delete" Click="StoragesViewMenu_Click"/>
-                    <MenuFlyoutItem Name="RenameMenu" Text="Rename" Click="StoragesViewMenu_Click"/>
+                    <MenuFlyoutItem Name="DeleteMenu" Text="Delete" Click="StorageViewMenu_Click"/>
+                    <MenuFlyoutItem Name="RenameMenu" Text="Rename" Click="StorageViewMenu_Click"/>
                 </MenuFlyout>
             </GridView.ContextFlyout>
         </GridView>

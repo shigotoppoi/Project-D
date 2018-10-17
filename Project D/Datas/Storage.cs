@@ -14,6 +14,7 @@ namespace Project_D.Datas
         public string Name { get; set; }
         public BitmapImage Thumbnail { get; set; }
         public string Extension { get; set; }
-        public bool isFile { get; set; }
+        public StorageItemTypes StorageType { get; set; }
+
     }
 }

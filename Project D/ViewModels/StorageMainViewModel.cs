@@ -16,45 +16,43 @@ namespace Project_D.ViewModels
     {
         public StorageMainViewModel()
         {
-            _storageMainModel = new StorageMainModel();
-            _sortedKindModel = new SortedKindModel();
-
-
+            _storageModel = new StorageModel();
+            _sortModel = new SortModel();
             Storages.Add(new StorageViewModel
             {
                 Name = "HHHHHHHHH",
                 //Path = "FFFFFFFFFFFFFF"
             });
 
-            foreach (var s in _sortedKindModel.GetSortedTypes())
+            foreach (var s in _sortModel.GetSorts())
             {
-                SortedKinds.Add(new SortedKindViewModel(s));
+                Sorts.Add(new SortViewModel
+                {
+                    Direction = s.Direction,
+                    Content = s.Text,
+                    Kind = s.Kind,
+                });
             }
         }
 
-        private StorageMainModel _storageMainModel;
-        private SortedKindModel _sortedKindModel;
-        private ObservableCollection<StorageViewModel> _Storages = new ObservableCollection<StorageViewModel>();
-        public ObservableCollection<StorageViewModel> Storages => _Storages;
-        public ObservableCollection<SortedKindViewModel> SortedKinds = new ObservableCollection<SortedKindViewModel>();
+        private StorageModel _storageModel;
+        private SortModel _sortModel;
 
-        public void AddStorage(string name, string path, BitmapImage image, string extension, bool isFile)
+        public ObservableCollection<StorageViewModel> Storages { get; } = new ObservableCollection<StorageViewModel>();
+        public ObservableCollection<SortViewModel> Sorts { get; } = new ObservableCollection<SortViewModel>();
+
+        public void AddStorage(string name, string path, BitmapImage image, string extension, StorageItemTypes storageType)
         {
             StorageViewModel storage = new StorageViewModel
             {
                 Name = name,
-                //Path = path,
+                Path = path,
                 Thumbnail = image,
                 Extension = extension,
-                IsFile = isFile
+                StorageType = storageType,
             };
-            _storageMainModel.AddStorage(storage);
-            _Storages.Add(storage);
-        }
-
-        public void AddStorage(IStorageItem storage)
-        {
-
+            Storages.Add(storage);
+            _storageModel.AddStorage(storage);
         }
 
         public void RemoveStorages(IEnumerable<object> items)
@@ -63,23 +61,23 @@ namespace Project_D.ViewModels
             {
                 if (item is StorageViewModel storage)
                 {
-                    _storageMainModel.RemoveStorage(storage);
-                    _Storages.Remove(storage);
+                    Storages.Remove(storage);
+                    _storageModel.RemoveStorage(storage);
                 }
             }
         }
 
-        public void SortStorage(object item)
+        public void SortStorage(object sortItem)
         {
-            var sortedKind = item as SortedKindViewModel;
-            if (sortedKind is null) return;
+            var sort = sortItem as SortViewModel;
+            if (sort is null) return;
 
-            switch (sortedKind.Kind)
+            switch (sort.Kind)
             {
-                case Datas.Kind.Extension:
+                case Kind.Extension:
                     Storages.Sort(new ExtensionComparer());
                     break;
-                case Datas.Kind.Name:
+                case Kind.Name:
                     Storages.Sort(new NameComparer());
                     break;
             }

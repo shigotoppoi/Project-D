@@ -11,10 +11,7 @@ namespace Project_D.ViewModels
 {
     public class StorageViewModel : NotificationBase<Storage>
     {
-        public StorageViewModel(Storage file = null) : base(file)
-        {
-
-        }
+        public StorageViewModel(Storage storage = null) : base(storage) { }
 
         public string Name
         {
@@ -25,29 +22,26 @@ namespace Project_D.ViewModels
         public string Path
         {
             get => This.Path;
-            //set
-            //{
-            //    if (Utility.CheckPath(value)) SetProperty(This.Path, value, () => This.Path = value);
-            //    else SetProperty(This.Path, string.Empty, () => This.Path = string.Empty);
-            //}
+            set => SetProperty(This.Path, value, () => This.Path = value);
         }
 
         public BitmapImage Thumbnail
         {
-            get => This.Thumbnail;
+            get =>This.Thumbnail;
             set => SetProperty(This.Thumbnail, value, () => This.Thumbnail = value);
         }
 
         public string Extension
         {
-            get => This.Extension;
+            get =>This.Extension;
             set => SetProperty(This.Extension, value, () => This.Extension = value);
         }
 
-        public bool IsFile
+
+        public StorageItemTypes StorageType
         {
-            get => This.isFile;
-            set => SetProperty(This.isFile, value, () => This.isFile = value);
+            get => This.StorageType;
+            set => SetProperty(This.StorageType, value, () => This.StorageType = value);
         }
     }
 }

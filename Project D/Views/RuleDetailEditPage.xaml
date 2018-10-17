@@ -6,9 +6,10 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
+    xmlns:viewModels="using:Project_D.ViewModels"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid DataContext="{Binding Source=Rule}">
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
@@ -29,7 +30,7 @@
 
             <TextBlock Grid.Column="0" Grid.Row="0"></TextBlock>
             <TextBox Grid.Column="1" Grid.Row="0" Name="RuleNameTextBox"
-                            Text="{Binding Name, Mode=TwoWay}"></TextBox>
+                            Text="{Binding Path=Rule.Name,  Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
             <TextBlock Grid.Column="0" Grid.Row="1"></TextBlock>
             <TextBox Grid.Column="1" Grid.Row="1" Name="DestinationTextBox"
                             Text="{Binding Rule.Destination, Mode=TwoWay,UpdateSourceTrigger=Explicit}"></TextBox>

@@ -33,58 +33,75 @@ namespace Project_D.Views
             this.InitializeComponent();
 
             StorageMain = new StorageMainViewModel();
+            foreach(var sort in StorageMain.Sorts)
+            {
+                var icon = new FontIcon();
+                icon.Glyph = "&#xE74B;";
+                icon = sort == StorageMain.Sorts[0] ? icon : null;
+                var menu = new MenuFlyoutItem();
+                menu.Text = sort.Content;
+                menu.Icon = icon;
+                menu.Click += (s, e) =>
+                {
+                    StorageMain.SortStorage(e.OriginalSource);
+
+                };
+                SortMenu.Items.Add(menu);
+            }
+            
         }
 
         private GridViewItem _RightTappedGridViewItem;
+
         internal StorageMainViewModel StorageMain { get; set; }
 
-        private async void FileMainGrid_Drop(object sender, DragEventArgs e)
+        private async void TopGrid_Drop(object sender, DragEventArgs e)
         {
             if (e.DataView.Contains(StandardDataFormats.StorageItems))
             {
                 var items = await e.DataView.GetStorageItemsAsync();
                 foreach (var item in items)
                 {
-                    if (item is StorageFile storageFile)
+                    if (item is StorageFile file)
                     {
                         var bitmapImage = new BitmapImage();
-                        bitmapImage.SetSource(await storageFile.GetThumbnailAsync(Windows.Storage.FileProperties.ThumbnailMode.SingleItem));
-                        StorageMain.AddStorage(storageFile.DisplayName, storageFile.Path, bitmapImage, storageFile.FileType, true);
+                        bitmapImage.SetSource(await file.GetThumbnailAsync(Windows.Storage.FileProperties.ThumbnailMode.SingleItem));
+                        StorageMain.AddStorage(file.DisplayName, file.Path, bitmapImage, file.FileType, StorageItemTypes.File);
                     }
-                    else if (item is StorageFolder storageFolder)
+                    else if (item is StorageFolder folder)
                     {
                         var bitmapImage = new BitmapImage();
-                        bitmapImage.SetSource(await storageFolder.GetThumbnailAsync(Windows.Storage.FileProperties.ThumbnailMode.SingleItem));
-                        StorageMain.AddStorage(storageFolder.DisplayName, storageFolder.Path, bitmapImage, null, false);
+                        bitmapImage.SetSource(await folder.GetThumbnailAsync(Windows.Storage.FileProperties.ThumbnailMode.SingleItem));
+                        StorageMain.AddStorage(folder.DisplayName, folder.Path, bitmapImage, null, StorageItemTypes.Folder);
                     }
                 }
             }
         }
 
-        private void StorageGrid_DragOver(object sender, DragEventArgs e)
+        private void TopGrid_DragOver(object sender, DragEventArgs e)
         {
             e.AcceptedOperation = DataPackageOperation.Link;
         }
 
-        private void SortedKind_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void Sort_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var item = e.AddedItems.FirstOrDefault();
             StorageMain.SortStorage(item);
         }
 
-        private void SortedKind_DropDownClosed(object sender, object e)
+        private void Sort_DropDownClosed(object sender, object e)
         {
             var cb = sender as ComboBox;
             StorageMain.SortStorage(cb.SelectedItem);
         }
 
-        private void StoragesViewMenu_Click(object sender, RoutedEventArgs e)
+        private void StorageViewMenu_Click(object sender, RoutedEventArgs e)
         {
             var item = sender as MenuFlyoutItem;
             switch (item.Name)
             {
                 case nameof(DeleteMenu):
-                    StorageMain.RemoveStorages(StoragesGridView.SelectedItems);
+                    StorageMain.RemoveStorages(StorageView.SelectedItems);
                     break;
                 case nameof(RenameMenu):
                     //if (_RightTappedGridViewItem != null)
@@ -104,13 +121,13 @@ namespace Project_D.Views
             //d.focu
         }
 
-        private void StoragesGridView_RightTapped(object sender, RightTappedRoutedEventArgs e)
+        private void StorageView_RightTapped(object sender, RightTappedRoutedEventArgs e)
         {
             var item = (e.OriginalSource as FrameworkElement)?.DataContext;
-            _RightTappedGridViewItem = StoragesGridView.ContainerFromItem(item) as GridViewItem;
+            _RightTappedGridViewItem = StorageView.ContainerFromItem(item) as GridViewItem;
         }
 
-        private void StoragesGridView_ItemClick(object sender, ItemClickEventArgs e)
+        private void StorageView_ItemClick(object sender, ItemClickEventArgs e)
         {
 
         }

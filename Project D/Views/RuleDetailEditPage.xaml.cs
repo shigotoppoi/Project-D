@@ -26,6 +26,7 @@ namespace Project_D.Views
         public RuleDetailEditPage()
         {
             this.InitializeComponent();
+            DataContext = Rule;
         }
 
         public RuleViewModel Rule { get; set; }
@@ -48,6 +49,7 @@ namespace Project_D.Views
 
         private void ConfirmEdit_Click(object sender, RoutedEventArgs e)
         {
+
             RuleNameTextBox.GetBindingExpression(TextBlock.TextProperty).UpdateSource();
             //if (RuleMain.SelectedRule == null)
             //{

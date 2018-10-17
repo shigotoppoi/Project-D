@@ -7,9 +7,9 @@ using Project_D.Datas;
 
 namespace Project_D.Models
 {
-    class StorageMainModel
+    class StorageModel
     {
-        public StorageMainModel()
+        public StorageModel()
         {
             _storages = new List<Storage>();
         }
