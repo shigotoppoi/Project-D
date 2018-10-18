@@ -22,10 +22,10 @@
                 Maximum="{x:Bind _progress.Maximum}"
                 Width="100"
                 Height="100"
-                Outline="LightSkyBlue"
+                Outline="LightSkyBlue" 
                 ValueChanged="CircularProgress_ValueChanged"/>
             <TextBlock Name="TextProgress" Text="{x:Bind _progress.ToString(),Mode=OneWay}"></TextBlock>
-            <Button Name="Cancel"></Button>
+            <Button Command="{x:Bind _progress.SuspendComman}"></Button>
         </StackPanel>
     </StackPanel>
 </Page>

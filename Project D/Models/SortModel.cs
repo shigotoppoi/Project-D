@@ -13,7 +13,7 @@ namespace Project_D.Models
         {
             return new List<Sort>
             {
-                new Sort("Name",Kind.Name),
+                new Sort("Name",Kind.Name,Direction.Ascendant),
                 new Sort("Extension",Kind.Extension),
                 new Sort("Path",Kind.Path),
             }.OrderBy(o => (int)o.Kind);

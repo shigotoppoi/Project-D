@@ -13,7 +13,7 @@ namespace UnitTestProject1
         RuleViewModel _getRule() => new RuleViewModel
         {
             CreateIfNone = true,
-            Destination = @"C:\Users\User\Desktop\trashs",
+            Destination = @"C:\Users\User\Desktop\des",
             ReplaceIfExist = true,
             Extensions="zip;jpg;png",
             Format="[skip] name [skip]",
@@ -24,7 +24,7 @@ namespace UnitTestProject1
         {
             return new List<StorageViewModel>
             {
-                new StorageViewModel{Extension="jpg",Name="[00] AAA [88]",Path=@"C:\Users\User\Desktop\des"},
+                new StorageViewModel{Extension="png",Name="[00] AAA [11]",Path=@"C:\Users\User\Desktop\trashs\[00] AAA [11].png",StorageType=Windows.Storage.StorageItemTypes.File},
                 new StorageViewModel{Extension="jpg",Name="AAA",Path="aaa"},
             };
         }

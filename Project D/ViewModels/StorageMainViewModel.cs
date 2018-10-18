@@ -29,7 +29,7 @@ namespace Project_D.ViewModels
                 Sorts.Add(new SortViewModel
                 {
                     Direction = s.Direction,
-                    Content = s.Text,
+                    Text = s.Text,
                     Kind = s.Kind,
                 });
             }
@@ -89,6 +89,28 @@ namespace Project_D.ViewModels
             {
                 var file = await StorageFile.GetFileFromPathAsync(storage.Path);
                 await file.RenameAsync(storage.Name);
+            }
+        }
+
+        public void ChangeSort(object sortItem)
+        {
+            if(sortItem is SortViewModel clickedSort)
+            {
+                foreach (var sort in Sorts)
+                {
+                    if (sort.Equals(clickedSort))
+                    {
+                        sort.Direction = sort.Direction.Equals(Direction.Ascendant) ? Direction.Descendant : Direction.Ascendant;
+                    }
+                    else if (clickedSort.Equals(Direction.None))
+                    {
+                        sort.Direction = Direction.Ascendant;
+                    }
+                    else
+                    {
+                        sort.Direction = Direction.None;
+                    }
+                }
             }
         }
     }

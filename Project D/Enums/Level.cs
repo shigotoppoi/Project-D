@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Project_D
 {
-    internal enum Direction
+    enum Level
     {
-        None,Ascendant, Descendant
+        Regular,Warning,Error
     }
 }

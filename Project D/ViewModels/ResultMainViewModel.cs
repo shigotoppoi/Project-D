@@ -7,7 +7,13 @@ using Project_D.Datas;
 
 namespace Project_D.ViewModels
 {
-    class ResultViewModel:NotificationBase<Result>
+    class ResultMainViewModel
     {
+        public ResultMainViewModel()
+        {
+        }
+
+        public Result Result => new Result();
+        
     }
 }

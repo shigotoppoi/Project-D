@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Project_D.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -12,7 +13,6 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using Project_D.ViewModels;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -31,13 +31,14 @@ namespace Project_D.Views
             DataContext = _progress;
         }
 
-        IProgressViewModel _progress;
+        private IProgressViewModel _progress;
 
         private void CircularProgress_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
         {
-
+            if(_progress.Value.Equals(_progress.Maximum))
+            {
+                
+            }
         }
-
-
     }
 }

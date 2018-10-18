@@ -11,6 +11,7 @@ namespace Project_D.ViewModels
         double Value { get; }
         double Maximum { get; }
         double Minimum { get; }
+        RelayCommand SuspendComman { get; }
 
         Task RunAsync();
         string ToString();

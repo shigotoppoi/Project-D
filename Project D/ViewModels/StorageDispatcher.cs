@@ -17,15 +17,19 @@ namespace Project_D.ViewModels
             _ruleParser = new RuleParser();
             _rule = rule;
             _storages = storages;
+
+            SuspendComman = new RelayCommand(_suspend);
         }
 
         private RuleParser _ruleParser;
         private Rule _rule;
         private IEnumerable<StorageViewModel> _storages;
+        private bool _isSuspended;
 
         public double Value { get; private set; } = 0;
         public double Maximum => _storages.Count();
         public double Minimum => 0;
+        public RelayCommand SuspendComman { get; }
 
         public async Task RunAsync()
         {
@@ -34,6 +38,8 @@ namespace Project_D.ViewModels
             var desItems = await desRootFolder.GetItemsAsync();
             foreach (var storage in _storages)
             {
+                if (_isSuspended) break;
+
                 var desFolderName = _ruleParser.ParseName(formatKeys, storage.Name);
                 var desFolder = await desRootFolder.TryGetItemAsync(desFolderName) as StorageFolder;
 
@@ -114,6 +120,11 @@ namespace Project_D.ViewModels
             var total = Maximum.ToString();
             var current = Value.ToString();
             return $"{current.PadLeft(total.Length, ' ')} / {total}";
+        }
+
+        private void _suspend()
+        {
+            _isSuspended = true;
         }
     }
 }

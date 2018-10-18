@@ -9,7 +9,7 @@ namespace Project_D.Datas
     internal class Sort
     {
         public Sort() { }
-        public Sort(string text, Kind category, Direction direction = Direction.Ascendant)
+        public Sort(string text, Kind category, Direction direction = Direction.None)
         {
             Text = text;
             Kind = category;

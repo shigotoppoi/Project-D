@@ -32,23 +32,7 @@ namespace Project_D.Views
         {
             this.InitializeComponent();
 
-            StorageMain = new StorageMainViewModel();
-            foreach(var sort in StorageMain.Sorts)
-            {
-                var icon = new FontIcon();
-                icon.Glyph = "&#xE74B;";
-                icon = sort == StorageMain.Sorts[0] ? icon : null;
-                var menu = new MenuFlyoutItem();
-                menu.Text = sort.Content;
-                menu.Icon = icon;
-                menu.Click += (s, e) =>
-                {
-                    StorageMain.SortStorage(e.OriginalSource);
-
-                };
-                SortMenu.Items.Add(menu);
-            }
-            
+            StorageMain = new StorageMainViewModel();          
         }
 
         private GridViewItem _RightTappedGridViewItem;
@@ -155,6 +139,22 @@ namespace Project_D.Views
         {
             (Application.Current as App).WorkContent.Storages = StorageMain.Storages;
             Frame.Navigate(typeof(ProgressPage));
+        }
+
+        private void SortListView_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            StorageMain.ChangeSort(e.ClickedItem);
+            SortFlyout.Hide();
+        }
+
+        private void SortFlyout_Opening(object sender, object e)
+        {
+            e.ToString();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            e.ToString();
         }
     }
 }
