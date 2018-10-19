@@ -37,7 +37,7 @@ namespace Project_D.Views
         {
             if(_progress.Value.Equals(_progress.Maximum))
             {
-                
+                Frame.Navigate(typeof(ResultMainPage), _progress.Result);
             }
         }
     }

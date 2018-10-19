@@ -12,6 +12,7 @@ namespace Project_D.ViewModels
         double Maximum { get; }
         double Minimum { get; }
         RelayCommand SuspendComman { get; }
+        object Result { get; }
 
         Task RunAsync();
         string ToString();

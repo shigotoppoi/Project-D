@@ -10,7 +10,44 @@
 
     <Grid>
         <Pivot >
-            
+            <PivotItem Header="All">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Column="1" Text="Files"></TextBlock>
+                    <TextBlock Grid.Column="2" Text="Folders"></TextBlock>
+                    <TextBlock Grid.Column="3" Text="Total"></TextBlock>
+                    <TextBlock Grid.Row="1" Text="Success"></TextBlock>
+                    <TextBlock Grid.Row="2" Text="Failure"></TextBlock>
+                    <TextBlock Grid.Row="3" Text="New Folder"></TextBlock>
+
+                    <TextBlock Grid.Row="1" Grid.Column="1" Text="{x:Bind _resultMain.SuccessFiles.Count}"></TextBlock>
+                    <TextBlock Grid.Row="1" Grid.Column="2" Text="{x:Bind _resultMain.SuccessFolders}"></TextBlock>
+                    <TextBlock Grid.Row="1" Grid.Column="3"></TextBlock>
+                    
+                    <TextBlock Grid.Row="2" Grid.Column="1"></TextBlock>
+                    <TextBlock Grid.Row="2" Grid.Column="2"></TextBlock>
+                    <TextBlock Grid.Row="2" Grid.Column="3"></TextBlock>
+                    
+                    <TextBlock Grid.Row="3" Grid.Column="1"></TextBlock>
+                    <TextBlock Grid.Row="3" Grid.Column="2"></TextBlock>
+                    <TextBlock Grid.Row="3" Grid.Column="3"></TextBlock>
+                    
+                </Grid>
+            </PivotItem>
+            <PivotItem Header="All">
+                <local:ResultSummaryPage></local:ResultSummaryPage>
+            </PivotItem>
         </Pivot>
     </Grid>
 </Page>

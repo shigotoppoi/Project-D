@@ -17,8 +17,6 @@ namespace Project_D.ViewModels
             _ruleParser = new RuleParser();
             _rule = rule;
             _storages = storages;
-
-            SuspendComman = new RelayCommand(_suspend);
         }
 
         private RuleParser _ruleParser;
@@ -29,10 +27,12 @@ namespace Project_D.ViewModels
         public double Value { get; private set; } = 0;
         public double Maximum => _storages.Count();
         public double Minimum => 0;
-        public RelayCommand SuspendComman { get; }
+        public RelayCommand SuspendComman => new RelayCommand(_suspend);
+        public object Result => new Summery();
 
         public async Task RunAsync()
         {
+            var summary = Result as Summery;
             var formatKeys = _ruleParser.ParseFormat(_rule.Format);
             var desRootFolder = await StorageFolder.GetFolderFromPathAsync(_rule.Destination);
             var desItems = await desRootFolder.GetItemsAsync();
@@ -43,27 +43,48 @@ namespace Project_D.ViewModels
                 var desFolderName = _ruleParser.ParseName(formatKeys, storage.Name);
                 var desFolder = await desRootFolder.TryGetItemAsync(desFolderName) as StorageFolder;
 
-                if (desFolder is null)
+                if (desFolder == null && _rule.CreateIfNone)
                 {
-                    //
+                    summary.NewFolders.Add(storage);
+                }
+                else if (desFolder == null)
+                {
+                    summary.NotFoundFolders.Add(storage);
                     continue;
                 }
 
-                IStorageItem item;
-                if (storage.StorageType == StorageItemTypes.File)
+                IStorageItem item = null;
+                try
                 {
-                    item = await StorageFile.GetFileFromPathAsync(storage.Path);
+                    if (storage.StorageType == StorageItemTypes.File)
+                    {
+                        item = await StorageFile.GetFileFromPathAsync(storage.Path);
+                    }
+                    else
+                    {
+                        item = await StorageFolder.GetFolderFromPathAsync(storage.Path);
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    item = await StorageFolder.GetFolderFromPathAsync(storage.Path);
+                    switch (ex)
+                    {
+                        case FileNotFoundException file:
+                        case DirectoryNotFoundException folder:
+                            summary.Failure.Add(storage);
+                            continue;
+                        default:
+                            throw;
+                    }
                 }
-                await _moveFiles(item, desFolder, _rule.ReplaceIfExist, _rule.CreateIfNone);
+
+                await _moveFiles(item, desFolder, _rule.ReplaceIfExist);
                 Value++;
+                summary.Success.Add(storage);
             }
         }
 
-        private async Task _moveFiles(IStorageItem souItem, StorageFolder destination, bool replaceIfExists, bool creatIfNew)
+        private async Task _moveFiles(IStorageItem souItem, StorageFolder destination, bool replaceIfExists)
         {
             var desItem = await destination.TryGetItemAsync(souItem.Name);
 
@@ -94,7 +115,7 @@ namespace Project_D.ViewModels
                 {
                     subDesFolder = desItem as StorageFolder;
                 }
-                else if (desItem == null && creatIfNew)
+                else if (desItem == null)
                 {
                     subDesFolder = await destination.CreateFolderAsync(souFolder.DisplayName);
                 }
@@ -105,7 +126,7 @@ namespace Project_D.ViewModels
 
                 foreach (var item in await souFolder.GetItemsAsync())
                 {
-                    await _moveFiles(souFolder, subDesFolder, replaceIfExists, creatIfNew);
+                    await _moveFiles(souFolder, subDesFolder, replaceIfExists);
                 }
                 await souFolder.DeleteAsync();
             }

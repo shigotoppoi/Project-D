@@ -12,28 +12,19 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using Project_D.ViewModels;
 
-// The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
+// 空白頁項目範本已記錄在 https://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace Project_D.Views
 {
     /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
+    /// 可以在本身使用或巡覽至框架內的空白頁面。
     /// </summary>
-    public sealed partial class ResultMainPage : Page
+    public sealed partial class ResultSummaryPage : Page
     {
-        public ResultMainPage()
+        public ResultSummaryPage()
         {
             this.InitializeComponent();
-        }
-
-        ResultMainViewModel _resultMain;
-
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            _resultMain = new ResultMainViewModel(e.Parameter); 
-            base.OnNavigatedTo(e);
         }
     }
 }

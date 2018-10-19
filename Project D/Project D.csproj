@@ -143,9 +143,9 @@
     <Compile Include="ViewModels\Comparers\ExtensionComparer.cs" />
     <Compile Include="ViewModels\Comparers\NameComparer.cs" />
     <Compile Include="ViewModels\IProgressViewModel.cs" />
+    <Compile Include="Datas\Summery.cs" />
     <Compile Include="ViewModels\RelayCommand.cs" />
     <Compile Include="ViewModels\RelayParameterCommand.cs" />
-    <Compile Include="Datas\Result.cs" />
     <Compile Include="ViewModels\ResultViewModel.cs" />
     <Compile Include="ViewModels\StorageDispatcher.cs" />
     <Compile Include="ViewModels\ResultMainViewModel.cs" />
@@ -158,6 +158,9 @@
     <Compile Include="ViewModels\RuleViewModel.cs" />
     <Compile Include="ViewModels\RuleMainViewModel.cs" />
     <Compile Include="ViewModels\Utility.cs" />
+    <Compile Include="Views\ResultSummaryPage.xaml.cs">
+      <DependentUpon>ResultSummaryPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\RuleDetailPage.xaml.cs">
       <DependentUpon>RuleDetailPage.xaml</DependentUpon>
     </Compile>
@@ -204,6 +207,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="UserControls\SortMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ResultSummaryPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
