@@ -5,49 +5,33 @@
     xmlns:local="using:Project_D.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <Pivot >
-            <PivotItem Header="All">
+        <StackPanel>
+            <TextBlock></TextBlock>
+            <controls:Expander x:Name="Expander1" VerticalAlignment="Top" Margin="0,0,0,10"
+                           Header="This is the header - expander 1"
+                           HorizontalContentAlignment="Stretch"
+                           IsExpanded="True"
+                           ExpandDirection="Down">
                 <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition></ColumnDefinition>
-                        <ColumnDefinition></ColumnDefinition>
-                        <ColumnDefinition></ColumnDefinition>
-                        <ColumnDefinition></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition></RowDefinition>
-                        <RowDefinition></RowDefinition>
-                        <RowDefinition></RowDefinition>
-                        <RowDefinition></RowDefinition>
-                    </Grid.RowDefinitions>
-                    <TextBlock Grid.Column="1" Text="Files"></TextBlock>
-                    <TextBlock Grid.Column="2" Text="Folders"></TextBlock>
-                    <TextBlock Grid.Column="3" Text="Total"></TextBlock>
-                    <TextBlock Grid.Row="1" Text="Success"></TextBlock>
-                    <TextBlock Grid.Row="2" Text="Failure"></TextBlock>
-                    <TextBlock Grid.Row="3" Text="New Folder"></TextBlock>
-
-                    <TextBlock Grid.Row="1" Grid.Column="1" Text="{x:Bind _resultMain.SuccessFiles.Count}"></TextBlock>
-                    <TextBlock Grid.Row="1" Grid.Column="2" Text="{x:Bind _resultMain.SuccessFolders}"></TextBlock>
-                    <TextBlock Grid.Row="1" Grid.Column="3"></TextBlock>
-                    
-                    <TextBlock Grid.Row="2" Grid.Column="1"></TextBlock>
-                    <TextBlock Grid.Row="2" Grid.Column="2"></TextBlock>
-                    <TextBlock Grid.Row="2" Grid.Column="3"></TextBlock>
-                    
-                    <TextBlock Grid.Row="3" Grid.Column="1"></TextBlock>
-                    <TextBlock Grid.Row="3" Grid.Column="2"></TextBlock>
-                    <TextBlock Grid.Row="3" Grid.Column="3"></TextBlock>
-                    
+                    <TextBlock HorizontalAlignment="Center"
+                       TextWrapping="Wrap"
+                       Text="This is the expanded content"
+                       VerticalAlignment="Center" />
                 </Grid>
-            </PivotItem>
-            <PivotItem Header="All">
-                <local:ResultSummaryPage></local:ResultSummaryPage>
-            </PivotItem>
-        </Pivot>
+
+                <controls:Expander.ContentOverlay>
+                    <Grid >
+                        <TextBlock Text="This is the content overlay"
+                         HorizontalAlignment="Center"
+                         VerticalAlignment="Center" />
+                    </Grid>
+                </controls:Expander.ContentOverlay>
+            </controls:Expander>
+        </StackPanel>
     </Grid>
 </Page>

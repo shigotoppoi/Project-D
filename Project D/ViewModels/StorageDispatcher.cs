@@ -28,11 +28,11 @@ namespace Project_D.ViewModels
         public double Maximum => _storages.Count();
         public double Minimum => 0;
         public RelayCommand SuspendComman => new RelayCommand(_suspend);
-        public object Result => new Summery();
+        public object Result => new Summary();
 
         public async Task RunAsync()
         {
-            var summary = Result as Summery;
+            var summaries = Result as Summary;
             var formatKeys = _ruleParser.ParseFormat(_rule.Format);
             var desRootFolder = await StorageFolder.GetFolderFromPathAsync(_rule.Destination);
             var desItems = await desRootFolder.GetItemsAsync();

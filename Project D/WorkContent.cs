@@ -10,6 +10,5 @@ namespace Project_D
     public class WorkContent
     {
         public RuleViewModel Rule { get; set; }
-        public IEnumerable<StorageViewModel> Storages { get; set; }
     }
 }

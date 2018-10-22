@@ -137,8 +137,8 @@ namespace Project_D.Views
 
         private void Execute_Click(object sender, RoutedEventArgs e)
         {
-            (Application.Current as App).WorkContent.Storages = StorageMain.Storages;
-            Frame.Navigate(typeof(ProgressPage));
+            var work = (Application.Current as App).WorkContent;
+            Frame.Navigate(typeof(ProgressPage), new StorageDispatcher(StorageMain.Storages, work.Rule));
         }
 
         private void SortListView_ItemClick(object sender, ItemClickEventArgs e)

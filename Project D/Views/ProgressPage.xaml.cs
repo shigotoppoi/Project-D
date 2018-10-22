@@ -26,9 +26,12 @@ namespace Project_D.Views
         public ProgressPage()
         {
             this.InitializeComponent();
-            var work = (Application.Current as App).WorkContent;
-            _progress = new StorageDispatcher(work.Storages, work.Rule);
-            DataContext = _progress;
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            _progress = e.Parameter as IProgressViewModel;
+            base.OnNavigatedTo(e);
         }
 
         private IProgressViewModel _progress;

@@ -12,16 +12,16 @@ namespace Project_D.ViewModels
     {
         public ResultMainViewModel(object result)
         {
-            _summary = result as Summery;;
+            _result = result as Summary;;
+
+            List<Result> summaries = new List<Result>
+            {
+                new Result{Header="Source Not Found",Storages=}
+            }
         }
 
-        private Summery _summary { get; }
+        private Summary _result { get; }
 
-        public List<Storage> SuccessFiles => _summary.Success.Where(o => o.StorageType.Equals(StorageItemTypes.File)).ToList();
-        public IEnumerable<Storage> SuccessFolders => _summary.Success.Where(o => o.StorageType.Equals(StorageItemTypes.Folder));
-        public IEnumerable<Storage> FailureFiles => _summary.Failure.Where(o => o.StorageType.Equals(StorageItemTypes.File));
-        public IEnumerable<Storage> FailureFolders => _summary.Failure.Where(o => o.StorageType.Equals(StorageItemTypes.Folder));
-        public IEnumerable<Storage> NotFoundFolders => _summary.NotFoundFolders;
-        public IEnumerable<Storage> NewFolders => _summary.NewFolders;
+        public IEnumerable<Result> Summaries { get; }
     }
 }
