@@ -17,6 +17,9 @@ namespace Project_D.ViewModels
             _ruleParser = new RuleParser();
             _rule = rule;
             _storages = storages;
+            Maximum = storages.Count();
+            Minimum = 0;
+            SuspendComman = new RelayCommand(_suspend);
         }
 
         private RuleParser _ruleParser;
@@ -25,14 +28,14 @@ namespace Project_D.ViewModels
         private bool _isSuspended;
 
         public double Value { get; private set; } = 0;
-        public double Maximum => _storages.Count();
-        public double Minimum => 0;
-        public RelayCommand SuspendComman => new RelayCommand(_suspend);
-        public object Result => new Summary();
+        public double Maximum { get; }
+        public double Minimum { get; }
+        public RelayCommand SuspendComman { get; }
+        public object Result { get; private set; }
 
         public async Task RunAsync()
         {
-            var summaries = Result as Summary;
+            List<Outcome> results = new List<Outcome>();
             var formatKeys = _ruleParser.ParseFormat(_rule.Format);
             var desRootFolder = await StorageFolder.GetFolderFromPathAsync(_rule.Destination);
             var desItems = await desRootFolder.GetItemsAsync();
@@ -45,11 +48,11 @@ namespace Project_D.ViewModels
 
                 if (desFolder == null && _rule.CreateIfNone)
                 {
-                    summary.NewFolders.Add(storage);
+                    results.Add(new Outcome { Category = OutcomeCategory.NewFolder, Storage = storage });
                 }
                 else if (desFolder == null)
                 {
-                    summary.NotFoundFolders.Add(storage);
+                    results.Add(new Outcome { Category = OutcomeCategory.FolderNotFound, Storage = storage });
                     continue;
                 }
 
@@ -71,7 +74,7 @@ namespace Project_D.ViewModels
                     {
                         case FileNotFoundException file:
                         case DirectoryNotFoundException folder:
-                            summary.Failure.Add(storage);
+                            results.Add(new Outcome { Category = OutcomeCategory.MissingSource, Storage = storage });
                             continue;
                         default:
                             throw;
@@ -80,8 +83,10 @@ namespace Project_D.ViewModels
 
                 await _moveFiles(item, desFolder, _rule.ReplaceIfExist);
                 Value++;
-                summary.Success.Add(storage);
+                results.Add(new Outcome { Category = OutcomeCategory.Success, Storage = storage });
             }
+
+            Result = results;
         }
 
         private async Task _moveFiles(IStorageItem souItem, StorageFolder destination, bool replaceIfExists)

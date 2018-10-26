@@ -13,9 +13,9 @@ namespace Project_D.Models
         {
             return new List<Sort>
             {
-                new Sort("Name",Kind.Name,Direction.Ascendant),
-                new Sort("Extension",Kind.Extension),
-                new Sort("Path",Kind.Path),
+                new Sort{Text= "Name",Kind= Kind.Name,Direction= Direction.Ascendant },
+                new Sort{Text="Extension",Kind=Kind.Extension },
+                new Sort{Text= "Path",Kind=Kind.Path },
             }.OrderBy(o => (int)o.Kind);
         }
     }

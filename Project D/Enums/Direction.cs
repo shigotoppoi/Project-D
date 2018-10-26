@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Project_D
 {
-    internal enum Direction
+    public enum Direction
     {
         None,Ascendant, Descendant
     }

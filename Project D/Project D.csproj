@@ -121,12 +121,12 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Datas\DataService.cs" />
-    <Compile Include="Datas\Result.cs" />
+    <Compile Include="Datas\Outcome.cs" />
     <Compile Include="Datas\Sort.cs" />
     <Compile Include="Enums\Kind.cs" />
     <Compile Include="Datas\Storage.cs" />
     <Compile Include="Datas\Rule.cs" />
-    <Compile Include="Enums\Level.cs" />
+    <Compile Include="Enums\OutcomeCategory.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -144,7 +144,8 @@
     <Compile Include="ViewModels\Comparers\ExtensionComparer.cs" />
     <Compile Include="ViewModels\Comparers\NameComparer.cs" />
     <Compile Include="ViewModels\IProgressViewModel.cs" />
-    <Compile Include="Datas\Summary.cs" />
+    <Compile Include="ViewModels\OutcomeCategoryViewModel.cs" />
+    <Compile Include="ViewModels\OutcomeViewModel.cs" />
     <Compile Include="ViewModels\RelayCommand.cs" />
     <Compile Include="ViewModels\RelayParameterCommand.cs" />
     <Compile Include="ViewModels\StorageDispatcher.cs" />

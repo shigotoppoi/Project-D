@@ -35,5 +35,14 @@ namespace Project_D.Views
             _resultMain = new ResultMainViewModel(e.Parameter); 
             base.OnNavigatedTo(e);
         }
+
+        private void OutcomeCategorys_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var listBox = sender as ListBox;
+
+            OutcomePane.ItemsSource = _resultMain.GetOutcomes(listBox.SelectedItem );
+            OutcomeContent.IsPaneOpen = true;
+            listBox.SelectedIndex = -1; //???databinding會消失
+        }
     }
 }

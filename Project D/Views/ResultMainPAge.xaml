@@ -6,32 +6,49 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    xmlns:viewModels="using:Project_D.ViewModels"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
+    <Page.Resources>
+        <DataTemplate x:Key="OutcomeCategoryTemplate" x:DataType="viewModels:OutcomeCategoryViewModel">
+            <RelativePanel Margin="5" Padding="10" Width="300">
+                <TextBlock RelativePanel.AlignLeftWithPanel="True" Text="{Binding DisplayName}"  FontSize="10"></TextBlock>
+                <TextBlock RelativePanel.AlignRightWithPanel="True" Text="{Binding Count}" FontSize="10"></TextBlock>
+            </RelativePanel>
+        </DataTemplate>
+    </Page.Resources>
+    
+    <SplitView Name="OutcomeContent" IsPaneOpen="False" OpenPaneLength="300" PanePlacement="Right">
         <StackPanel>
             <TextBlock></TextBlock>
-            <controls:Expander x:Name="Expander1" VerticalAlignment="Top" Margin="0,0,0,10"
-                           Header="This is the header - expander 1"
-                           HorizontalContentAlignment="Stretch"
-                           IsExpanded="True"
-                           ExpandDirection="Down">
-                <Grid>
-                    <TextBlock HorizontalAlignment="Center"
-                       TextWrapping="Wrap"
-                       Text="This is the expanded content"
-                       VerticalAlignment="Center" />
-                </Grid>
 
-                <controls:Expander.ContentOverlay>
-                    <Grid >
-                        <TextBlock Text="This is the content overlay"
-                         HorizontalAlignment="Center"
-                         VerticalAlignment="Center" />
-                    </Grid>
-                </controls:Expander.ContentOverlay>
-            </controls:Expander>
+            <ListBox Name="OutcomeCategorys"
+                    ItemsSource="{x:Bind _resultMain.OutcomeCategorys}" 
+                     ItemTemplate="{StaticResource OutcomeCategoryTemplate}" 
+                     Background="Transparent"
+                     SelectionChanged="OutcomeCategorys_SelectionChanged"
+                     >
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="ListBoxItem">
+                        <Setter Property="Padding" Value="10"/>
+                        <Setter Property="Margin" Value="10"/>
+                    </Style>
+                </ListBox.ItemContainerStyle>
+            </ListBox>
         </StackPanel>
-    </Grid>
+
+        <SplitView.Pane>
+            <ListBox Name="OutcomePane">
+                <ListBox.ItemTemplate>
+                    <DataTemplate x:DataType="viewModels:OutcomeViewModel">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{x:Bind DisplayName}"></TextBlock>
+                            <TextBlock></TextBlock>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </SplitView.Pane>
+    </SplitView>
 </Page>

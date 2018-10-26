@@ -90,9 +90,6 @@
         <RelativePanel Grid.Row="2" Style="{StaticResource AppBar}">
             <TextBlock Text="{x:Bind StorageMain.Storages.Count,Mode=OneWay}"></TextBlock>
             <Button RelativePanel.AlignRightWithPanel="True" Name="Execute" Click="Execute_Click"></Button>
-
         </RelativePanel>
-        
-      
     </Grid>
 </Page>

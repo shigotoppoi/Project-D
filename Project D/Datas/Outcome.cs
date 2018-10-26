@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Project_D.Datas
 {
-    public class Result
+    public class Outcome
     {
-        public string Header { get; set; }
-        public IEnumerable<Storage> Storages { get; set; }
+        public OutcomeCategory Category { get; set; }
+        public Storage Storage { get; set; }
     }
 }

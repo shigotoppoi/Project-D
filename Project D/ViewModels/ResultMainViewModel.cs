@@ -12,16 +12,47 @@ namespace Project_D.ViewModels
     {
         public ResultMainViewModel(object result)
         {
-            _result = result as Summary;;
+            OutcomeCategorys = new List<OutcomeCategoryViewModel>();
+            Outcomes = new Dictionary<OutcomeCategory, IEnumerable<OutcomeViewModel>>();
 
-            List<Result> summaries = new List<Result>
+            OutcomeCategorys.Add(new OutcomeCategoryViewModel(OutcomeCategory.FolderNotFound, "TEST1", 1));
+            OutcomeCategorys.Add(new OutcomeCategoryViewModel(OutcomeCategory.MissingSource, "TEST2", 1));
+            OutcomeCategorys.Add(new OutcomeCategoryViewModel(OutcomeCategory.NewFolder, "TEST3", 1));
+            OutcomeCategorys.Add(new OutcomeCategoryViewModel(OutcomeCategory.Success, "TEST4", 1));
+
+            Outcomes.Add(OutcomeCategory.FolderNotFound, new List<OutcomeViewModel> { new OutcomeViewModel(new Outcome { Category = OutcomeCategory.FolderNotFound, Storage = new Storage { Name = "AAA" } })});
+            Outcomes.Add(OutcomeCategory.MissingSource, new List<OutcomeViewModel> { new OutcomeViewModel(new Outcome { Category = OutcomeCategory.MissingSource, Storage = new Storage { Name = "BBB" } }) });
+            Outcomes.Add(OutcomeCategory.NewFolder, new List<OutcomeViewModel> { new OutcomeViewModel(new Outcome { Category = OutcomeCategory.NewFolder, Storage = new Storage { Name = "CCC" } }) });
+            Outcomes.Add(OutcomeCategory.Success, new List<OutcomeViewModel> { new OutcomeViewModel(new Outcome { Category = OutcomeCategory.Success, Storage = new Storage { Name = "DDD" } }) });
+
+            if (result != null)
             {
-                new Result{Header="Source Not Found",Storages=}
+                var items = result as IEnumerable<OutcomeViewModel>;
+                foreach (OutcomeCategory status in Enum.GetValues(typeof(OutcomeCategory)))
+                {
+                    var filteredItems = items.Where(o => o.Category.Equals(status));
+                    var category = new OutcomeCategoryViewModel(status, status.ToString(), filteredItems.Count());
+                    OutcomeCategorys.Add(category);
+                    Outcomes.Add(status, filteredItems);
+                }
             }
         }
 
-        private Summary _result { get; }
 
-        public IEnumerable<Result> Summaries { get; }
+        public List<OutcomeCategoryViewModel> OutcomeCategorys { get; }
+
+        private Dictionary<OutcomeCategory, IEnumerable<OutcomeViewModel>> Outcomes { get; }
+
+        public IEnumerable<OutcomeViewModel> GetOutcomes (object outcomeCategory)
+        {
+            if(outcomeCategory is OutcomeCategoryViewModel outcomeCategoryViewModel && Outcomes.ContainsKey(outcomeCategoryViewModel.Category))
+            {
+                return Outcomes[outcomeCategoryViewModel.Category];
+            }
+            else
+            {
+                return null;
+            }
+        }
     }
 }

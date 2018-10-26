@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Project_D
 {
-    internal enum Kind
+    public enum Kind
     {
         Name,Extension,Path
     }

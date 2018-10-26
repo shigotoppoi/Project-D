@@ -14,6 +14,7 @@ namespace Test
         }
     }
 
+
     class MyTest
     {
         RuleViewModel _getRule() => new RuleViewModel

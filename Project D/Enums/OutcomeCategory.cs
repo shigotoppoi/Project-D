@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Project_D
 {
-    enum Level
+    public enum OutcomeCategory
     {
-        Regular,Warning,Error
+        Success, NewFolder, MissingSource, FolderNotFound
     }
 }

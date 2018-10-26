@@ -6,15 +6,8 @@ using System.Threading.Tasks;
 
 namespace Project_D.Datas
 {
-    internal class Sort
+    public class Sort
     {
-        public Sort() { }
-        public Sort(string text, Kind category, Direction direction = Direction.None)
-        {
-            Text = text;
-            Kind = category;
-            Direction = direction;
-        }
         public string Text { get; set; }
         public Kind Kind { get; set; }
         public Direction Direction { get; set; }
