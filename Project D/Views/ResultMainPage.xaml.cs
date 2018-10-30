@@ -39,10 +39,15 @@ namespace Project_D.Views
         private void OutcomeCategorys_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var listBox = sender as ListBox;
-
+            if (listBox.SelectedIndex.Equals(-1)) return;
+            
             OutcomePane.ItemsSource = _resultMain.GetOutcomes(listBox.SelectedItem );
             OutcomeContent.IsPaneOpen = true;
-            listBox.SelectedIndex = -1; //???databinding會消失
+        }
+
+        private void OutcomeContent_PaneClosed(SplitView sender, object args)
+        {
+            OutcomeCategorys.SelectedItem = null;
         }
     }
 }

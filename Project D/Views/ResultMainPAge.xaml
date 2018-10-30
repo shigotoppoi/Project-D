@@ -19,7 +19,7 @@
         </DataTemplate>
     </Page.Resources>
     
-    <SplitView Name="OutcomeContent" IsPaneOpen="False" OpenPaneLength="300" PanePlacement="Right">
+    <SplitView Name="OutcomeContent" IsPaneOpen="False" PanePlacement="Right" PaneClosed="OutcomeContent_PaneClosed">
         <StackPanel>
             <TextBlock></TextBlock>
 
