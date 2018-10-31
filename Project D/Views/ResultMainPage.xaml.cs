@@ -40,8 +40,11 @@ namespace Project_D.Views
         {
             var listBox = sender as ListBox;
             if (listBox.SelectedIndex.Equals(-1)) return;
-            
-            OutcomePane.ItemsSource = _resultMain.GetOutcomes(listBox.SelectedItem );
+
+            var outcomeCategory = listBox.SelectedItem as OutcomeCategoryViewModel;
+            OutcomeDetail.ItemsSource = _resultMain.Outcomes.ContainsKey(outcomeCategory.Category) ? _resultMain.Outcomes[outcomeCategory.Category] : null;
+            CategoryName.Text = outcomeCategory.DisplayName;
+            StoragesNumber.Text = outcomeCategory.Count.ToString();
             OutcomeContent.IsPaneOpen = true;
         }
 

@@ -19,7 +19,7 @@
         </DataTemplate>
     </Page.Resources>
     
-    <SplitView Name="OutcomeContent" IsPaneOpen="False" PanePlacement="Right" PaneClosed="OutcomeContent_PaneClosed">
+    <SplitView Name="OutcomeContent" IsPaneOpen="False" PanePlacement="Right" PaneClosed="OutcomeContent_PaneClosed" OpenPaneLength="{x:Bind OutcomePane.Width}">
         <StackPanel>
             <TextBlock></TextBlock>
 
@@ -39,16 +39,25 @@
         </StackPanel>
 
         <SplitView.Pane>
-            <ListBox Name="OutcomePane">
-                <ListBox.ItemTemplate>
-                    <DataTemplate x:DataType="viewModels:OutcomeViewModel">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{x:Bind DisplayName}"></TextBlock>
-                            <TextBlock></TextBlock>
-                        </StackPanel>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
+            <StackPanel Name="OutcomePane" MinWidth="300" Width="500" Margin="{StaticResource PaneContentMargin}" >
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Name="CategoryName"></TextBlock>
+                    <TextBlock Name="StoragesNumber"></TextBlock>
+                </StackPanel>
+                <ListBox Name="OutcomeDetail">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate x:DataType="viewModels:OutcomeViewModel">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{x:Bind DisplayName}"></TextBlock>
+                                <TextBlock></TextBlock>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                    <ListBox.ItemContainerStyleSelector>
+                        <StyleSelector ></StyleSelector>
+                    </ListBox.ItemContainerStyleSelector>
+                </ListBox>
+            </StackPanel>
         </SplitView.Pane>
     </SplitView>
 </Page>

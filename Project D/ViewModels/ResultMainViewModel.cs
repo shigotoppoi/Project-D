@@ -15,12 +15,18 @@ namespace Project_D.ViewModels
             OutcomeCategorys = new List<OutcomeCategoryViewModel>();
             Outcomes = new Dictionary<OutcomeCategory, IEnumerable<OutcomeViewModel>>();
 
-            OutcomeCategorys.Add(new OutcomeCategoryViewModel(OutcomeCategory.FolderNotFound, "TEST1", 1));
-            OutcomeCategorys.Add(new OutcomeCategoryViewModel(OutcomeCategory.MissingSource, "TEST2", 1));
+            OutcomeCategorys.Add(new OutcomeCategoryViewModel(OutcomeCategory.FolderNotFound, "TEST1", 2));
+            OutcomeCategorys.Add(new OutcomeCategoryViewModel(OutcomeCategory.MissingSource, "TEST2", 2));
             OutcomeCategorys.Add(new OutcomeCategoryViewModel(OutcomeCategory.NewFolder, "TEST3", 1));
             OutcomeCategorys.Add(new OutcomeCategoryViewModel(OutcomeCategory.Success, "TEST4", 1));
 
-            Outcomes.Add(OutcomeCategory.FolderNotFound, new List<OutcomeViewModel> { new OutcomeViewModel(new Outcome { Category = OutcomeCategory.FolderNotFound, Storage = new Storage { Name = "AAA" } })});
+            var foldernotfounds = new List<OutcomeViewModel> {
+                new OutcomeViewModel(new Outcome { Category = OutcomeCategory.FolderNotFound, Storage = new Storage { Name = "AAA" } }),
+                new OutcomeViewModel(new Outcome { Category = OutcomeCategory.FolderNotFound, Storage = new Storage { Name = "AAA2" } }),
+                new OutcomeViewModel(new Outcome { Category = OutcomeCategory.FolderNotFound, Storage = new Storage { Name = "AAA3" } }),
+                new OutcomeViewModel(new Outcome { Category = OutcomeCategory.FolderNotFound, Storage = new Storage { Name = "AAA4" } }),
+            };
+            Outcomes.Add(OutcomeCategory.FolderNotFound, foldernotfounds);
             Outcomes.Add(OutcomeCategory.MissingSource, new List<OutcomeViewModel> { new OutcomeViewModel(new Outcome { Category = OutcomeCategory.MissingSource, Storage = new Storage { Name = "BBB" } }) });
             Outcomes.Add(OutcomeCategory.NewFolder, new List<OutcomeViewModel> { new OutcomeViewModel(new Outcome { Category = OutcomeCategory.NewFolder, Storage = new Storage { Name = "CCC" } }) });
             Outcomes.Add(OutcomeCategory.Success, new List<OutcomeViewModel> { new OutcomeViewModel(new Outcome { Category = OutcomeCategory.Success, Storage = new Storage { Name = "DDD" } }) });
@@ -41,13 +47,25 @@ namespace Project_D.ViewModels
 
         public List<OutcomeCategoryViewModel> OutcomeCategorys { get; }
 
-        private Dictionary<OutcomeCategory, IEnumerable<OutcomeViewModel>> Outcomes { get; }
+        public Dictionary<OutcomeCategory, IEnumerable<OutcomeViewModel>> Outcomes { get; }
 
         public IEnumerable<OutcomeViewModel> GetOutcomes (object outcomeCategory)
         {
             if(outcomeCategory is OutcomeCategoryViewModel outcomeCategoryViewModel && Outcomes.ContainsKey(outcomeCategoryViewModel.Category))
             {
                 return Outcomes[outcomeCategoryViewModel.Category];
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public string GetCategoryName(object outcomeCategory)
+        {
+            if (outcomeCategory is OutcomeCategoryViewModel outcomeCategoryViewModel)
+            {
+                return outcomeCategoryViewModel.DisplayName;
             }
             else
             {

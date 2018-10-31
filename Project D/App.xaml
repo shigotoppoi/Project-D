@@ -6,9 +6,10 @@
 
     <Application.Resources>
 
-        <Thickness x:Key="ContentMargin">15 0 15 0</Thickness>
+        <Thickness x:Key="ContentMargin">15</Thickness>
         <Thickness x:Key="ItemMargin">10</Thickness>
-        
+        <Thickness x:Key="PaneContentMargin">30</Thickness>
+
         <Style x:Key="SectionText" TargetType="TextBlock">
             <Setter Property="FontSize" Value="16"></Setter>
             <Setter Property="Margin" Value="{StaticResource ItemMargin}"></Setter>
