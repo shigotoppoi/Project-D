@@ -17,9 +17,15 @@
                 <TextBlock RelativePanel.AlignRightWithPanel="True" Text="{Binding Count}" FontSize="10"></TextBlock>
             </RelativePanel>
         </DataTemplate>
+
     </Page.Resources>
-    
+
+    <StackPanel>
+        
     <SplitView Name="OutcomeContent" IsPaneOpen="False" PanePlacement="Right" PaneClosed="OutcomeContent_PaneClosed" OpenPaneLength="{x:Bind OutcomePane.Width}">
+
+        
+        
         <StackPanel>
             <TextBlock></TextBlock>
 
@@ -44,20 +50,18 @@
                     <TextBlock Name="CategoryName"></TextBlock>
                     <TextBlock Name="StoragesNumber"></TextBlock>
                 </StackPanel>
-                <ListBox Name="OutcomeDetail">
-                    <ListBox.ItemTemplate>
-                        <DataTemplate x:DataType="viewModels:OutcomeViewModel">
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="{x:Bind DisplayName}"></TextBlock>
-                                <TextBlock></TextBlock>
-                            </StackPanel>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                    <ListBox.ItemContainerStyleSelector>
-                        <StyleSelector ></StyleSelector>
-                    </ListBox.ItemContainerStyleSelector>
-                </ListBox>
+                    <ListBox Name="OutcomeDetail" >
+                        <ListBox.ItemTemplate>
+                            <DataTemplate x:DataType="viewModels:OutcomeViewModel" >
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{x:Bind DisplayName}"></TextBlock>
+                                    <TextBlock></TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
             </StackPanel>
         </SplitView.Pane>
     </SplitView>
+    </StackPanel>
 </Page>
