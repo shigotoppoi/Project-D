@@ -45,6 +45,7 @@ namespace Project_D.Views
             OutcomeDetail.ItemsSource = _resultMain.Outcomes.ContainsKey(outcomeCategory.Category) ? _resultMain.Outcomes[outcomeCategory.Category] : null;
             CategoryName.Text = outcomeCategory.DisplayName;
             StoragesNumber.Text = outcomeCategory.Count.ToString();
+            OutcomePane.Width.ToString();
             OutcomeContent.IsPaneOpen = true;
         }
 

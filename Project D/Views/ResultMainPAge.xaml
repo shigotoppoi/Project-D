@@ -20,36 +20,35 @@
 
     </Page.Resources>
 
-    <StackPanel>
-        
-    <SplitView Name="OutcomeContent" IsPaneOpen="False" PanePlacement="Right" PaneClosed="OutcomeContent_PaneClosed" OpenPaneLength="{x:Bind OutcomePane.Width}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" ></RowDefinition>
+        </Grid.RowDefinitions>
 
-        
-        
-        <StackPanel>
-            <TextBlock></TextBlock>
-
-            <ListBox Name="OutcomeCategorys"
+        <SplitView Name="OutcomeContent" Grid.Row="0" IsPaneOpen="False" PanePlacement="Right" PaneClosed="OutcomeContent_PaneClosed" OpenPaneLength="{x:Bind OutcomePane.Width}">
+            <StackPanel>
+                <TextBlock></TextBlock>
+                <ListBox Name="OutcomeCategorys"
                     ItemsSource="{x:Bind _resultMain.OutcomeCategorys}" 
                      ItemTemplate="{StaticResource OutcomeCategoryTemplate}" 
                      Background="Transparent"
                      SelectionChanged="OutcomeCategorys_SelectionChanged"
                      >
-                <ListBox.ItemContainerStyle>
-                    <Style TargetType="ListBoxItem">
-                        <Setter Property="Padding" Value="10"/>
-                        <Setter Property="Margin" Value="10"/>
-                    </Style>
-                </ListBox.ItemContainerStyle>
-            </ListBox>
-        </StackPanel>
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="ListBoxItem">
+                            <Setter Property="Padding" Value="10"/>
+                            <Setter Property="Margin" Value="10"/>
+                        </Style>
+                    </ListBox.ItemContainerStyle>
+                </ListBox>
+            </StackPanel>
 
-        <SplitView.Pane>
-            <StackPanel Name="OutcomePane" MinWidth="300" Width="500" Margin="{StaticResource PaneContentMargin}" >
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Name="CategoryName"></TextBlock>
-                    <TextBlock Name="StoragesNumber"></TextBlock>
-                </StackPanel>
+            <SplitView.Pane>
+                <StackPanel Name="OutcomePane"  Margin="{StaticResource PaneContentMargin}" >
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Name="CategoryName"></TextBlock>
+                        <TextBlock Name="StoragesNumber"></TextBlock>
+                    </StackPanel>
                     <ListBox Name="OutcomeDetail" >
                         <ListBox.ItemTemplate>
                             <DataTemplate x:DataType="viewModels:OutcomeViewModel" >
@@ -60,8 +59,8 @@
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                     </ListBox>
-            </StackPanel>
-        </SplitView.Pane>
-    </SplitView>
-    </StackPanel>
+                </StackPanel>
+            </SplitView.Pane>
+        </SplitView>
+    </Grid>
 </Page>

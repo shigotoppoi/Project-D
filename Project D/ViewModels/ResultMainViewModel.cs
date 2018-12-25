@@ -19,12 +19,14 @@ namespace Project_D.ViewModels
             OutcomeCategorys.Add(new OutcomeCategoryViewModel(OutcomeCategory.MissingSource, "TEST2", 2));
             OutcomeCategorys.Add(new OutcomeCategoryViewModel(OutcomeCategory.NewFolder, "TEST3", 1));
             OutcomeCategorys.Add(new OutcomeCategoryViewModel(OutcomeCategory.Success, "TEST4", 1));
+            OutcomeCategorys.Add(new OutcomeCategoryViewModel(OutcomeCategory.Success, "TEST5", 1));
 
             var foldernotfounds = new List<OutcomeViewModel> {
                 new OutcomeViewModel(new Outcome { Category = OutcomeCategory.FolderNotFound, Storage = new Storage { Name = "AAA" } }),
                 new OutcomeViewModel(new Outcome { Category = OutcomeCategory.FolderNotFound, Storage = new Storage { Name = "AAA2" } }),
                 new OutcomeViewModel(new Outcome { Category = OutcomeCategory.FolderNotFound, Storage = new Storage { Name = "AAA3" } }),
                 new OutcomeViewModel(new Outcome { Category = OutcomeCategory.FolderNotFound, Storage = new Storage { Name = "AAA4" } }),
+                new OutcomeViewModel(new Outcome { Category = OutcomeCategory.FolderNotFound, Storage = new Storage { Name = "AAA5" } }),
             };
             Outcomes.Add(OutcomeCategory.FolderNotFound, foldernotfounds);
             Outcomes.Add(OutcomeCategory.MissingSource, new List<OutcomeViewModel> { new OutcomeViewModel(new Outcome { Category = OutcomeCategory.MissingSource, Storage = new Storage { Name = "BBB" } }) });
