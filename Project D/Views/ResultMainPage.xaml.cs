@@ -39,13 +39,14 @@ namespace Project_D.Views
         private void OutcomeCategorys_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var listBox = sender as ListBox;
+            //若未有選擇任一種類則離開
             if (listBox.SelectedIndex.Equals(-1)) return;
             
             var outcomeCategory = listBox.SelectedItem as OutcomeCategoryViewModel;
             OutcomeDetail.ItemsSource = _resultMain.Outcomes.ContainsKey(outcomeCategory.Category) ? _resultMain.Outcomes[outcomeCategory.Category] : null;
             CategoryName.Text = outcomeCategory.DisplayName;
             StoragesNumber.Text = outcomeCategory.Count.ToString();
-            OutcomePane.Width.ToString();
+            OutcomeContent.OpenPaneLength = OutcomeContent.ActualWidth * 0.7;
             OutcomeContent.IsPaneOpen = true;
         }
 
