@@ -35,7 +35,7 @@ namespace Project_D.ViewModels
 
         public async Task RunAsync()
         {
-            List<Outcome> results = new List<Outcome>();
+            List<OutcomeViewModel> results = new List<OutcomeViewModel>();
             var formatKeys = _ruleParser.ParseFormat(_rule.Format);
             var desRootFolder = await StorageFolder.GetFolderFromPathAsync(_rule.Destination);
             var desItems = await desRootFolder.GetItemsAsync();
@@ -48,11 +48,11 @@ namespace Project_D.ViewModels
 
                 if (desFolder == null && _rule.CreateIfNone)
                 {
-                    results.Add(new Outcome { Category = OutcomeCategory.NewFolder, Storage = storage });
+                    results.Add(new OutcomeViewModel { Category = OutcomeCategory.NewFolder, Storage = storage });
                 }
                 else if (desFolder == null)
                 {
-                    results.Add(new Outcome { Category = OutcomeCategory.FolderNotFound, Storage = storage });
+                    results.Add(new OutcomeViewModel { Category = OutcomeCategory.FolderNotFound, Storage = storage });
                     continue;
                 }
 
@@ -74,7 +74,7 @@ namespace Project_D.ViewModels
                     {
                         case FileNotFoundException file:
                         case DirectoryNotFoundException folder:
-                            results.Add(new Outcome { Category = OutcomeCategory.MissingSource, Storage = storage });
+                            results.Add(new OutcomeViewModel { Category = OutcomeCategory.MissingSource, Storage = storage });
                             continue;
                         default:
                             throw;
@@ -83,7 +83,7 @@ namespace Project_D.ViewModels
 
                 await _moveFiles(item, desFolder, _rule.ReplaceIfExist);
                 Value++;
-                results.Add(new Outcome { Category = OutcomeCategory.Success, Storage = storage });
+                results.Add(new OutcomeViewModel { Category = OutcomeCategory.Success, Storage = storage });
             }
 
             Result = results;

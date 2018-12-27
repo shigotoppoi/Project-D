@@ -53,7 +53,7 @@
                         <ListBox.ItemTemplate>
                             <DataTemplate x:DataType="viewModels:OutcomeViewModel" >
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="{x:Bind DisplayName}"></TextBlock>
+                                    <TextBlock Text="{x:Bind Storage.Name}"></TextBlock>
                                     <TextBlock></TextBlock>
                                 </StackPanel>
                             </DataTemplate>

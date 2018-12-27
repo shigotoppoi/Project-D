@@ -13,25 +13,22 @@ namespace Project_D.ViewModels
         public ResultMainViewModel(object result)
         {
             OutcomeCategorys = new List<OutcomeCategoryViewModel>();
-            Outcomes = new Dictionary<OutcomeCategory, IEnumerable<OutcomeViewModel>>();
-
-            OutcomeCategorys.Add(new OutcomeCategoryViewModel(OutcomeCategory.FolderNotFound, "TEST1", 2));
-            OutcomeCategorys.Add(new OutcomeCategoryViewModel(OutcomeCategory.MissingSource, "TEST2", 2));
-            OutcomeCategorys.Add(new OutcomeCategoryViewModel(OutcomeCategory.NewFolder, "TEST3", 1));
-            OutcomeCategorys.Add(new OutcomeCategoryViewModel(OutcomeCategory.Success, "TEST4", 1));
-            OutcomeCategorys.Add(new OutcomeCategoryViewModel(OutcomeCategory.Success, "TEST5", 1));
 
             var foldernotfounds = new List<OutcomeViewModel> {
-                new OutcomeViewModel(new Outcome { Category = OutcomeCategory.FolderNotFound, Storage = new Storage { Name = "AAA" } }),
-                new OutcomeViewModel(new Outcome { Category = OutcomeCategory.FolderNotFound, Storage = new Storage { Name = "AAA2" } }),
-                new OutcomeViewModel(new Outcome { Category = OutcomeCategory.FolderNotFound, Storage = new Storage { Name = "AAA3" } }),
-                new OutcomeViewModel(new Outcome { Category = OutcomeCategory.FolderNotFound, Storage = new Storage { Name = "AAA4" } }),
-                new OutcomeViewModel(new Outcome { Category = OutcomeCategory.FolderNotFound, Storage = new Storage { Name = "AAA5" } }),
+                new OutcomeViewModel { Category = OutcomeCategory.FolderNotFound, Storage = new Storage { Name = "AAA" } },
+                new OutcomeViewModel { Category = OutcomeCategory.FolderNotFound, Storage = new Storage { Name = "AAA2" } },
+                new OutcomeViewModel { Category = OutcomeCategory.FolderNotFound, Storage = new Storage { Name = "AAA3" } },
+                new OutcomeViewModel { Category = OutcomeCategory.FolderNotFound, Storage = new Storage { Name = "AAA4" } },
+                new OutcomeViewModel { Category = OutcomeCategory.FolderNotFound, Storage = new Storage { Name = "AAA5" } } ,
             };
-            Outcomes.Add(OutcomeCategory.FolderNotFound, foldernotfounds);
-            Outcomes.Add(OutcomeCategory.MissingSource, new List<OutcomeViewModel> { new OutcomeViewModel(new Outcome { Category = OutcomeCategory.MissingSource, Storage = new Storage { Name = "BBB" } }) });
-            Outcomes.Add(OutcomeCategory.NewFolder, new List<OutcomeViewModel> { new OutcomeViewModel(new Outcome { Category = OutcomeCategory.NewFolder, Storage = new Storage { Name = "CCC" } }) });
-            Outcomes.Add(OutcomeCategory.Success, new List<OutcomeViewModel> { new OutcomeViewModel(new Outcome { Category = OutcomeCategory.Success, Storage = new Storage { Name = "DDD" } }) });
+            var miss = new List<OutcomeViewModel> { new OutcomeViewModel { Category = OutcomeCategory.NewFolder, Storage = new Storage { Name = "CCC" } } };
+            var newf = new List<OutcomeViewModel> { new OutcomeViewModel { Category = OutcomeCategory.NewFolder, Storage = new Storage { Name = "CCC" } } };
+            var succ = new List<OutcomeViewModel> { new OutcomeViewModel { Category = OutcomeCategory.Success, Storage = new Storage { Name = "DDD" } } };
+
+            OutcomeCategorys.Add(new OutcomeCategoryViewModel(OutcomeCategory.FolderNotFound, foldernotfounds, "TEST1"));
+            OutcomeCategorys.Add(new OutcomeCategoryViewModel(OutcomeCategory.MissingSource, miss, "TEST2"));
+            OutcomeCategorys.Add(new OutcomeCategoryViewModel(OutcomeCategory.NewFolder, newf, "TEST3"));
+            OutcomeCategorys.Add(new OutcomeCategoryViewModel(OutcomeCategory.Success, succ, "TEST4"));
 
             if (result != null)
             {
@@ -39,9 +36,8 @@ namespace Project_D.ViewModels
                 foreach (OutcomeCategory status in Enum.GetValues(typeof(OutcomeCategory)))
                 {
                     var filteredItems = items.Where(o => o.Category.Equals(status));
-                    var category = new OutcomeCategoryViewModel(status, status.ToString(), filteredItems.Count());
+                    var category = new OutcomeCategoryViewModel(status, filteredItems, status.ToString());
                     OutcomeCategorys.Add(category);
-                    Outcomes.Add(status, filteredItems);
                 }
             }
         }
@@ -49,19 +45,6 @@ namespace Project_D.ViewModels
 
         public List<OutcomeCategoryViewModel> OutcomeCategorys { get; }
 
-        public Dictionary<OutcomeCategory, IEnumerable<OutcomeViewModel>> Outcomes { get; }
-
-        public IEnumerable<OutcomeViewModel> GetOutcomes (object outcomeCategory)
-        {
-            if(outcomeCategory is OutcomeCategoryViewModel outcomeCategoryViewModel && Outcomes.ContainsKey(outcomeCategoryViewModel.Category))
-            {
-                return Outcomes[outcomeCategoryViewModel.Category];
-            }
-            else
-            {
-                return null;
-            }
-        }
 
         public string GetCategoryName(object outcomeCategory)
         {

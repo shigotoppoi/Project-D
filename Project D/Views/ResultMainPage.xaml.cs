@@ -43,7 +43,8 @@ namespace Project_D.Views
             if (listBox.SelectedIndex.Equals(-1)) return;
             
             var outcomeCategory = listBox.SelectedItem as OutcomeCategoryViewModel;
-            OutcomeDetail.ItemsSource = _resultMain.Outcomes.ContainsKey(outcomeCategory.Category) ? _resultMain.Outcomes[outcomeCategory.Category] : null;
+            //OutcomeDetail.ItemsSource = _resultMain.Outcomes.ContainsKey(outcomeCategory.Category) ? _resultMain.Outcomes[outcomeCategory.Category] : null;
+            OutcomeDetail.ItemsSource = outcomeCategory.Outcomes;
             CategoryName.Text = outcomeCategory.DisplayName;
             StoragesNumber.Text = outcomeCategory.Count.ToString();
             OutcomeContent.OpenPaneLength = OutcomeContent.ActualWidth * 0.7;

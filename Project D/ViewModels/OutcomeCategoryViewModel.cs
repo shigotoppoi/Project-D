@@ -9,15 +9,16 @@ namespace Project_D.ViewModels
 {
     class OutcomeCategoryViewModel
     {
-        public OutcomeCategoryViewModel(OutcomeCategory category, string displayName, int count)
+        public OutcomeCategoryViewModel(OutcomeCategory category, IEnumerable<OutcomeViewModel> outcomes, string displayName)
         {
             Category = category;
             DisplayName = displayName;
-            Count = count;
+            Outcomes = outcomes;
         }
 
         public OutcomeCategory Category { get; }
-        public int Count { get; }
+        public int Count { get => Outcomes.Count(); }
         public string DisplayName { get; }
+        public IEnumerable<OutcomeViewModel> Outcomes { get; }
     }
 }

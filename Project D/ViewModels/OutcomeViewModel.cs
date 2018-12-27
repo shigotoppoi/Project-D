@@ -9,14 +9,8 @@ namespace Project_D.ViewModels
 {
     class OutcomeViewModel
     {
-        public OutcomeViewModel(Outcome outcome)
-        {
-            _outcome = outcome;
-        }
 
-        Outcome _outcome;
-
-        public OutcomeCategory Category => _outcome.Category;
-        public string DisplayName => _outcome.Storage.Name;
+        public OutcomeCategory Category { get; set; }
+        public Storage Storage { get; set; }
     }
 }
